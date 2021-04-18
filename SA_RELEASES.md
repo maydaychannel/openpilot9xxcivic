@@ -1,4 +1,4 @@
-Stock Additions v0.6.6 - 2020-02-27 (0.8.2)
+Stock Additions v0.6.6 - 2021-02-27 (0.8.2)
 ===
  * Continued grey panda support (white panda not guaranteed)
  * Temporary removal of LaneSpeed and DynamicCameraOffset features
