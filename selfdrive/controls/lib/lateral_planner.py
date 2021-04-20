@@ -250,6 +250,8 @@ class LateralPlanner():
     plan_send.lateralPlan.rProb = float(self.LP.rll_prob)
     plan_send.lateralPlan.dProb = float(self.LP.d_prob)
 
+    plan_send.lateralPlan.cameraOffset = float(self.LP.camera_offset)
+
     plan_send.lateralPlan.steeringAngleDeg = float(self.desired_steering_wheel_angle_deg)
     plan_send.lateralPlan.steeringRateDeg = float(self.desired_steering_wheel_angle_rate_deg)
     plan_send.lateralPlan.angleOffsetDeg = float(sm['liveParameters'].angleOffsetAverageDeg)

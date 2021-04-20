@@ -521,7 +521,7 @@ class Controls:
     if len(meta.desirePrediction) and ldw_allowed:
       l_lane_change_prob = meta.desirePrediction[Desire.laneChangeLeft - 1]
       r_lane_change_prob = meta.desirePrediction[Desire.laneChangeRight - 1]
-      CAMERA_OFFSET = self.op_params.get('camera_offset')
+      CAMERA_OFFSET = self.sm['lateralPlan'].cameraOffset
       ldw_average_car_width = 1.750483672001016  # from sedans, suvs, and minivans (todo: find from all openpilot Toyotas instead)
       ldw_m_from_wheel = 0.15
       ldw_threshold = ldw_average_car_width / 2 + ldw_m_from_wheel
