@@ -99,10 +99,11 @@ class opParams:
 
     self.fork_params = {'camera_offset': Param(0.06, NUMBER, 'Your camera offset to use in lane_planner.py', live=True),
                         'dynamic_follow': Param('auto', str, static=True, hidden=True),
-                        'eager_accel': Param(False, [bool, int], 'Experimental❗ Combats hysteresis in the cruise control system, braking sooner to eliminate jerking\n'
-                                                                 'Set the param to `1` to use the first method: uses the smoothened derivative of desired accel\n'
-                                                                 'Setting the param to `2` uses the smoothened jerk of acceleration (tighter control/modification)\n'
-                                                                 'Try out both and see which is smoother. False disables this feature (so does True)', live=True),
+                        'eager_accel': Param(None, [type(None), int], 'Experimental❗ Combats hysteresis in the cruise control system, braking sooner to eliminate jerking\n'
+                                                                      'Might only work for TSS1 Toyotas\n'
+                                                                      'Set the param to `1` to use the first method: uses the smoothened derivative of desired accel\n'
+                                                                      'Setting the param to `2` uses the smoothened jerk of acceleration (tighter control/modification)\n'
+                                                                      'Try out both and see which is smoother. None disables this feature', live=True),
                         'accel_eagerness': Param(1.0, NUMBER, 'Multiplier for the acceleration modifier. 1 is full eagerness (default), 0.8 is 80%, etc.', live=True),
 
                         'accel_time_constant_0_mph': Param(0.01, NUMBER, 'Time constant for eager accel at 0 mph in seconds\n'  # todo: tune using these then remove
