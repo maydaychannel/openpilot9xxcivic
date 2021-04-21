@@ -522,8 +522,11 @@ class Controls:
       l_lane_change_prob = meta.desirePrediction[Desire.laneChangeLeft - 1]
       r_lane_change_prob = meta.desirePrediction[Desire.laneChangeRight - 1]
       CAMERA_OFFSET = self.op_params.get('camera_offset')
-      l_lane_close = left_lane_visible and (self.sm['modelV2'].laneLines[1].y[0] > -(1.08 + CAMERA_OFFSET))
-      r_lane_close = right_lane_visible and (self.sm['modelV2'].laneLines[2].y[0] < (1.08 - CAMERA_OFFSET))
+      ldw_average_car_width = 1.750483672001016  # from sedans, suvs, and minivans (todo: find from all openpilot Toyotas instead)
+      ldw_m_from_wheel = 0.15
+      ldw_threshold = ldw_average_car_width / 2 + ldw_m_from_wheel
+      l_lane_close = left_lane_visible and (self.sm['modelV2'].laneLines[1].y[0] > -(ldw_threshold + CAMERA_OFFSET))
+      r_lane_close = right_lane_visible and (self.sm['modelV2'].laneLines[2].y[0] < (ldw_threshold - CAMERA_OFFSET))
 
       CC.hudControl.leftLaneDepart = bool(l_lane_change_prob > LANE_DEPARTURE_THRESHOLD and l_lane_close)
       CC.hudControl.rightLaneDepart = bool(r_lane_change_prob > LANE_DEPARTURE_THRESHOLD and r_lane_close)
