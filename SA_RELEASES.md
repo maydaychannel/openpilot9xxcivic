@@ -1,3 +1,8 @@
+Stock Additions Update 3 - 2021-05-03 (0.8.2)
+===
+ * Remove eager accel and instead send future desired accel
+   * Much simpler and better/smoother results (tunable with `long_accel_delay`)
+
 Stock Additions Update 2 - 2021-04-21 (0.8.2)
 ===
  * Update versioning sceme to *Updates*, which reset on each new openpilot version
