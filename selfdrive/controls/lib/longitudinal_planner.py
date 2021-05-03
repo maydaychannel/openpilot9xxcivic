@@ -126,7 +126,7 @@ class Planner():
     self.params = Params()
     self.first_loop = True
 
-  def choose_solution(self, v_cruise_setpoint, enabled, model_enabled, accel_delay):
+  def choose_solution(self, v_cruise_setpoint, enabled, model_enabled):
     possible_futures = [self.mpc1.v_mpc_future, self.mpc2.v_mpc_future, v_cruise_setpoint]
     if enabled:
       solutions = {'cruise': self.v_cruise}
@@ -236,7 +236,7 @@ class Planner():
                           speeds,
                           accelerations)
 
-    self.choose_solution(v_cruise_setpoint, enabled, sm['modelLongButton'].enabled, self.CP.longAccelDelay)
+    self.choose_solution(v_cruise_setpoint, enabled, sm['modelLongButton'].enabled)
 
     # determine fcw
     if self.mpc1.new_lead:
