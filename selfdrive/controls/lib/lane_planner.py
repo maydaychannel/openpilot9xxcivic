@@ -1,4 +1,4 @@
-from common.numpy_fast import interp
+from common.numpy_fast import interp, clip
 import numpy as np
 from selfdrive.hardware import EON, TICI
 from cereal import log
@@ -46,6 +46,7 @@ class LanePlanner:
       self.ll_x = md.laneLines[1].x
       # only offset left and right lane lines; offsetting path does not make sense
       self.camera_offset = self.op_params.get('camera_offset')  # update camera offset
+      self.camera_offset = clip(self.camera_offset, -0.3, 0.3)
       self.lll_y = np.array(md.laneLines[1].y) - self.camera_offset
       self.rll_y = np.array(md.laneLines[2].y) - self.camera_offset
       self.lll_prob = md.laneLineProbs[1]
