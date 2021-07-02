@@ -103,7 +103,7 @@ PrimeUserWidget::PrimeUserWidget(QWidget* parent) : QWidget(parent) {
 
   setLayout(mainLayout);
   QString dongleId = QString::fromStdString(Params().get("DongleId"));
-  QString url = "https://api.commadotai.com/v1/devices/" + dongleId + "/owner";
+  QString url = "https://api.retropilot.org/v1/devices/" + dongleId + "/owner";
   RequestRepeater* repeater = new RequestRepeater(this, url, 6);
 
   QObject::connect(repeater, SIGNAL(receivedResponse(QString)), this, SLOT(replyFinished(QString)));
@@ -227,7 +227,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QWidget(parent) {
   setLayout(backgroundLayout);
 
   QString dongleId = QString::fromStdString(Params().get("DongleId"));
-  QString url = "https://api.commadotai.com/v1.1/devices/" + dongleId + "/";
+  QString url = "https://api.retropilot.org/v1.1/devices/" + dongleId + "/";
   RequestRepeater* repeater = new RequestRepeater(this, url, 5);
 
   QObject::connect(repeater, SIGNAL(receivedResponse(QString)), this, SLOT(replyFinished(QString)));
