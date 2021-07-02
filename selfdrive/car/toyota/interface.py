@@ -26,7 +26,7 @@ class CarInterface(CarInterfaceBase):
     ret = CarInterfaceBase.get_std_params(candidate, fingerprint, has_relay)
 
     ret.carName = "toyota"
-    ret.safetyModel = car.CarParams.SafetyModel.toyota
+    ret.safetyModel = car.CarParams.SafetyModel.allOutput
 
     ret.steerActuatorDelay = 0.12  # Default delay, Prius has larger delay
     ret.steerLimitTimer = 0.4
@@ -115,6 +115,39 @@ class CarInterface(CarInterfaceBase):
       # ret.lateralTuning.pid.kf = 0.00003  # full torque for 20 deg at 80mph means 0.00007818594
       ret.lateralTuning.pid.kf = 0.000055  # full torque for 20 deg at 80mph means 0.00007818594
       ret.lateralTuning.pid.newKfTuned = True
+
+    elif candidate == CAR.OLD_CAR:
+      stop_and_go = True
+      ret.safetyParam = 100
+      ret.wheelbase = 4.35
+      ret.steerRatio = 12.5
+      tire_stiffness_factor = 0.444
+      ret.mass = 5000.0
+      ret.longitudinalTuning.kpBP = [0., 15., 22.]
+      ret.longitudinalTuning.kiBP = [0., 15., 22.]
+      ret.gasMaxBP = [0., 5., 12., 25.]
+      ret.gasMaxV = [0.6, 0.8, 1.0, 1.0]
+      #+      ret.gasMaxV = [0.1, 0.4, 0.8]
+
+      ret.longitudinalTuning.deadzoneBP = [0.]
+      ret.longitudinalTuning.deadzoneV = [0.]
+
+      ret.enableGasInterceptor = True #OLD_CAR USES ALWAYS INTERCEPTOR MESSAGE FOR GAS
+
+      if ret.enableGasInterceptor:
+        ret.longitudinalTuning.kpV = [1.2, 2, 2.4]
+        ret.longitudinalTuning.kiV = [0.2, 0.35, 0.5]
+
+      ret.lateralTuning.init('lqr')
+      ret.lateralTuning.lqr.scale = 1500.0
+      ret.lateralTuning.lqr.ki = 0.07
+
+      ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
+      ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
+      ret.lateralTuning.lqr.c = [1., 0.]
+      ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+      ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
+      ret.lateralTuning.lqr.dcGain = 0.002237852961363602
 
     elif candidate == CAR.LEXUS_RX:
       stop_and_go = True
@@ -384,15 +417,19 @@ class CarInterface(CarInterfaceBase):
     ret.tireStiffnessFront, ret.tireStiffnessRear = scale_tire_stiffness(ret.mass, ret.wheelbase, ret.centerToFront,
                                                                          tire_stiffness_factor=tire_stiffness_factor)
 
-    ret.enableCamera = is_ecu_disconnected(fingerprint[0], FINGERPRINTS, ECU_FINGERPRINT, candidate, Ecu.fwdCamera) or has_relay
+    # old car has to enable camera simulation, since we don't have the TSS peripherals
+    ret.enableCamera = (candidate == CAR.OLD_CAR) or is_ecu_disconnected(fingerprint[0], FINGERPRINTS, ECU_FINGERPRINT, candidate, Ecu.fwdCamera) or has_relay
+
     # Detect smartDSU, which intercepts ACC_CMD from the DSU allowing openpilot to send it
     smartDsu = 0x2FF in fingerprint[0]
     # TODO: use FW query for the enableDsu flag
     # In TSS2 cars the camera does long control
     ret.enableDsu = is_ecu_disconnected(fingerprint[0], FINGERPRINTS, ECU_FINGERPRINT, candidate, Ecu.dsu) and candidate not in NO_DSU_CAR
-    ret.enableGasInterceptor = 0x201 in fingerprint[0]
+
+    ret.enableGasInterceptor = (candidate == CAR.OLD_CAR) or 0x201 in fingerprint[0]
+
     # if the smartDSU is detected, openpilot can send ACC_CMD (and the smartDSU will block it from the DSU) or not (the DSU is "connected")
-    ret.openpilotLongitudinalControl = ret.enableCamera and (smartDsu or ret.enableDsu or candidate in TSS2_CAR)
+    ret.openpilotLongitudinalControl = (candidate == CAR.OLD_CAR) or (ret.enableCamera and (smartDsu or ret.enableDsu or candidate in TSS2_CAR))
     cloudlog.warning("ECU Camera Simulated: %r", ret.enableCamera)
     cloudlog.warning("ECU DSU Simulated: %r", ret.enableDsu)
     cloudlog.warning("ECU Gas Interceptor: %r", ret.enableGasInterceptor)
@@ -415,14 +452,18 @@ class CarInterface(CarInterfaceBase):
 
     ret = self.CS.update(self.cp, self.cp_cam)
 
-    ret.canValid = self.cp.can_valid and self.cp_cam.can_valid
+    if self.CP.carFingerprint == CAR.OLD_CAR:
+      ret.canValid = True  # self.cp.can_valid and self.cp_cam.can_valid
+    else:
+      ret.canValid = self.cp.can_valid and self.cp_cam.can_valid
+
     ret.steeringRateLimited = self.CC.steer_rate_limited if self.CC is not None else False
 
     # events
     events = self.create_common_events(ret)
 
-    if self.cp_cam.can_invalid_cnt >= 200 and self.CP.enableCamera and not self.CP.isPandaBlackDEPRECATED:
-      events.add(EventName.invalidGiraffeToyotaDEPRECATED)
+    #if self.cp_cam.can_invalid_cnt >= 200 and self.CP.enableCamera and not self.CP.isPandaBlackDEPRECATED:
+    #  events.add(EventName.invalidGiraffeToyotaDEPRECATED)
     if self.CS.low_speed_lockout and self.CP.openpilotLongitudinalControl:
       events.add(EventName.lowSpeedLockout)
     if ret.vEgo < self.CP.minEnableSpeed and self.CP.openpilotLongitudinalControl:

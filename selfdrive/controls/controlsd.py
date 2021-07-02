@@ -33,7 +33,7 @@ STEER_ANGLE_SATURATION_TIMEOUT = 1.0 / DT_CTRL
 STEER_ANGLE_SATURATION_THRESHOLD = 2.5  # Degrees
 
 SIMULATION = "SIMULATION" in os.environ
-NOSENSOR = "NOSENSOR" in os.environ
+NOSENSOR = True # no GPS for white panda ... "NOSENSOR" in os.environ
 IGNORE_PROCESSES = set(["rtshield", "uploader", "deleter", "loggerd", "logmessaged", "tombstoned", "logcatd", "proclogd", "clocksd", "updated", "timezoned"])
 
 ThermalStatus = log.DeviceState.ThermalStatus
@@ -170,6 +170,10 @@ class Controls:
     self.rk = Ratekeeper(100, print_delay_threshold=None)
     self.prof = Profiler(False)  # off by default
 
+    self.lead_rel_speed = 255
+    self.lead_long_dist = 255
+
+
   def update_events(self, CS):
     """Compute carEvents from carState"""
 
@@ -279,6 +283,16 @@ class Controls:
       self.events.add(EventName.noTarget)
 
     self.add_stock_additions_alerts(CS)
+
+    # vision-only fcw, can be disabled if radar is present
+    if self.sm.updated['radarState']:
+      self.lead_rel_speed = self.sm['radarState'].leadOne.vRel
+      self.lead_long_dist = self.sm['radarState'].leadOne.dRel
+    if CS.cruiseState.enabled and self.lead_long_dist > 5 and self.lead_long_dist < 100 and self.lead_rel_speed <= -0.5 and CS.vEgo >= 5 and \
+            ((self.lead_long_dist/abs(self.lead_rel_speed) < 2.) or (self.lead_long_dist/abs(self.lead_rel_speed) < 4. and self.lead_rel_speed < -10) or \
+             (self.lead_long_dist/abs(self.lead_rel_speed) < 5. and self.lead_long_dist/CS.vEgo < 1.5)):
+      self.events.add(EventName.fcw)
+
 
   def add_stock_additions_alerts(self, CS):
     self.AM.SA_set_frame(self.sm.frame)
@@ -513,7 +527,7 @@ class Controls:
 
     recent_blinker = (self.sm.frame - self.last_blinker_frame) * DT_CTRL < 5.0  # 5s blinker cooldown
     ldw_allowed = self.is_ldw_enabled and CS.vEgo > LDW_MIN_SPEED and not recent_blinker \
-                    and not self.active and self.sm['liveCalibration'].calStatus == Calibration.CALIBRATED
+                    and (not self.active or CS.epsDisabled == True) and self.sm['liveCalibration'].calStatus == Calibration.CALIBRATED
 
     meta = self.sm['modelV2'].meta
     if len(meta.desirePrediction) and ldw_allowed:
