@@ -77,16 +77,25 @@ class CarController():
       self.lead_d = self.sm['radarState'].leadOne.dRel
 
     # gas and brake
-    apply_gas = 0.
-    apply_accel = actuators.gas - actuators.brake
+#    apply_gas = 0.
+#    apply_accel = actuators.gas - actuators.brake
 
-    if CS.CP.enableGasInterceptor and enabled and CS.out.vEgo < MIN_ACC_SPEED:
-      apply_gas = clip(actuators.gas, 0., 1.)
+#    if CS.CP.enableGasInterceptor and enabled and CS.out.vEgo < MIN_ACC_SPEED:
+#      apply_gas = clip(actuators.gas, 0., 1.)
 #      # converts desired acceleration to gas percentage for pedal
 #      # +0.06 offset to reduce ABS pump usage when applying very small gas
 #      if apply_accel * CarControllerParams.ACCEL_SCALE > coast_accel(CS.out.vEgo):
 #        apply_gas = clip(compute_gb_pedal(apply_accel * CarControllerParams.ACCEL_SCALE, CS.out.vEgo), 0., 1.)
 #      apply_accel += 0.06
+
+    apply_gas = clip(actuators.gas, 0., 1.)
+
+    if CS.CP.enableGasInterceptor:
+      # send only negative accel if interceptor is detected. otherwise, send the regular value
+      # +0.06 offset to reduce ABS pump usage when OP is engaged
+      apply_accel = 0.06 - actuators.brake
+    else:
+      apply_accel = actuators.gas - actuators.brake
 
     apply_accel, self.accel_steady = accel_hysteresis(apply_accel, self.accel_steady, enabled)
     apply_accel = clip(apply_accel * CarControllerParams.ACCEL_SCALE, CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX)
