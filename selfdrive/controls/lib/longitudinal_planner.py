@@ -143,7 +143,8 @@ class Planner():
       self.longitudinalPlanSource = slowest
 
       if self.op_params.get('accel_lag_compensation'):
-        accel_delay = interp(speed * CV.MS_TO_MPH, [10, 80], [0.2, 0.4])
+        #accel_delay = interp(speed * CV.MS_TO_MPH, [10, 80], [0.2, 0.4])    #Original
+        accel_delay = interp(speed * CV.MS_TO_KPH, [10, 150], [0.8, 1.6])
       else:
         accel_delay = 0.
 
