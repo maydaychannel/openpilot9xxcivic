@@ -288,10 +288,10 @@ class Controls:
     if self.sm.updated['radarState']:
       self.lead_rel_speed = self.sm['radarState'].leadOne.vRel
       self.lead_long_dist = self.sm['radarState'].leadOne.dRel
-    if CS.cruiseState.enabled and self.lead_long_dist > 5 and self.lead_long_dist < 100 and self.lead_rel_speed <= -0.5 and CS.vEgo >= 5 and \
-            ((self.lead_long_dist/abs(self.lead_rel_speed) < 2.) or (self.lead_long_dist/abs(self.lead_rel_speed) < 4. and self.lead_rel_speed < -10) or \
-             (self.lead_long_dist/abs(self.lead_rel_speed) < 5. and self.lead_long_dist/CS.vEgo < 1.5)):
-      self.events.add(EventName.fcw)
+    #if CS.cruiseState.enabled and self.lead_long_dist > 5 and self.lead_long_dist < 100 and self.lead_rel_speed <= -0.5 and CS.vEgo >= 5 and \
+    #        ((self.lead_long_dist/abs(self.lead_rel_speed) < 2.) or (self.lead_long_dist/abs(self.lead_rel_speed) < 4. and self.lead_rel_speed < -10) or \
+    #         (self.lead_long_dist/abs(self.lead_rel_speed) < 5. and self.lead_long_dist/CS.vEgo < 1.5)):
+    #  self.events.add(EventName.fcw)
 
 
   def add_stock_additions_alerts(self, CS):
