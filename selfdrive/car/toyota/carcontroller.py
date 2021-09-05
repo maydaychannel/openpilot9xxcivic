@@ -159,7 +159,7 @@ class CarController():
         can_sends.append(create_accel_command(self.packer, apply_accel, pcm_cancel_cmd, self.standstill_req, lead))
       else:
         #can_sends.append(create_accel_command(self.packer, 0, pcm_cancel_cmd, False, lead))   # Original value
-        can_sends.append(create_accel_command(self.packer, 0.5, pcm_cancel_cmd, False, lead))
+        can_sends.append(create_accel_command(self.packer, 500, pcm_cancel_cmd, False, lead))
 
     if (frame % 2 == 0) and (CS.CP.enableGasInterceptor):
       # send exactly zero if apply_gas is zero. Interceptor will send the max between read value and apply_gas.
