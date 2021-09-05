@@ -95,9 +95,9 @@ class CarController():
       # +0.06 offset to reduce ABS pump usage when OP is engaged
       #apply_accel = 0.06 - actuators.brake    # Original
       if lead:
-        apply_accel = 0.06
-      else:
         apply_accel = 0.06 - actuators.brake
+      else:
+        apply_accel = 0.06
       # End new
     else:
       apply_accel = actuators.gas - actuators.brake
