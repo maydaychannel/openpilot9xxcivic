@@ -6,7 +6,8 @@ from common.op_params import opParams
 
 LongCtrlState = log.ControlsState.LongControlState
 
-STOPPING_EGO_SPEED = 0.5
+#STOPPING_EGO_SPEED = 0.5    # Original value
+STOPPING_EGO_SPEED = 3.
 STOPPING_TARGET_SPEED_OFFSET = 0.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
@@ -124,7 +125,8 @@ class LongControl():
     # Intention is to move again, release brake fast before handing control to PID
     elif self.long_control_state == LongCtrlState.starting:
       if output_gb < -0.2:
-        output_gb += CP.startingBrakeRate / RATE
+        # output_gb += CP.startingBrakeRate / RATE    # Original value
+        output_gb += CP.startingBrakeRate / 10
       self.reset(CS.vEgo)
 
     self.last_output_gb = output_gb
