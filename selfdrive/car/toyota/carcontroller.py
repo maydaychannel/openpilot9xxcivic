@@ -117,7 +117,8 @@ class CarController():
     else:
       apply_steer_req = 1
 
-    if not enabled and CS.pcm_acc_status:
+    #if not enabled and CS.pcm_acc_status:    # Original
+    if not enabled:
       # send pcm acc cancel cmd if drive is disabled but pcm is still on, or if the system can't be activated
       pcm_cancel_cmd = 1
 
