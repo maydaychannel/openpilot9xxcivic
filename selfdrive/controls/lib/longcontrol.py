@@ -7,7 +7,7 @@ from common.op_params import opParams
 LongCtrlState = log.ControlsState.LongControlState
 
 #STOPPING_EGO_SPEED = 0.5    # Original value
-STOPPING_EGO_SPEED = 3.
+STOPPING_EGO_SPEED = 5.
 STOPPING_TARGET_SPEED_OFFSET = 0.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
