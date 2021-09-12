@@ -282,7 +282,8 @@ class DynamicFollow:
     elif df_profile == self.df_profiles.relaxed:  # default to relaxed/stock
       #y_dist = [1.411, 1.418, 1.428, 1.441, 1.461, 1.49, 1.535, 1.561, 1.589, 1.612, 1.621, 1.632, 1.648]       # Original values
       #y_dist = [1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.612, 1.621, 1.632, 1.648]
-      y_dist = [1.411, 1.418, 1.8, 1.9, 2.1, 2.0, 1.8, 1.6, 1.6, 1.612, 1.621, 1.632, 1.648]
+      #y_dist = [1.411, 1.418, 1.8, 1.9, 2.1, 2.0, 1.8, 1.6, 1.6, 1.612, 1.621, 1.632, 1.648]
+      y_dist = [1.8, 1.8, 1.8, 1.9, 2.1, 2.0, 1.8, 1.6, 1.6, 1.55, 1.5, 1.45, 1.4]
     else:
       raise Exception('Unknown profile type: {}'.format(df_profile))
 
