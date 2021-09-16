@@ -119,7 +119,8 @@ class LongControl():
     elif self.long_control_state == LongCtrlState.stopping:
       # Keep applying brakes until the car is stopped
       if not CS.standstill or output_gb > -BRAKE_STOPPING_TARGET:
-        output_gb -= CP.stoppingBrakeRate / RATE
+        #output_gb -= CP.stoppingBrakeRate / RATE
+        output_gb -= CP.stoppingBrakeRate / 10
       output_gb = clip(output_gb, -brake_max, gas_max)
 
       self.reset(CS.vEgo)
@@ -128,7 +129,7 @@ class LongControl():
     elif self.long_control_state == LongCtrlState.starting:
       if output_gb < -0.2:
         # output_gb += CP.startingBrakeRate / RATE    # Original value
-        output_gb += CP.startingBrakeRate / 10
+        output_gb += CP.startingBrakeRate / 2
       self.reset(CS.vEgo)
 
     self.last_output_gb = output_gb
