@@ -302,12 +302,13 @@ class DynamicFollow:
 
     if (self.car_data.v_ego >= self.sng_speed or self.df_data.v_egos[0]['v_ego'] >= self.car_data.v_ego) and not self.sng:
       # if above 15 mph OR we're decelerating to a stop, keep shorter TR. when we reaccelerate, use sng_TR and slowly decrease
-      TR = interp(self.car_data.v_ego, x_vel, y_dist)
+      #TR = interp(self.car_data.v_ego, x_vel, y_dist)
+      TR = TR
     else:  # this allows us to get closer to the lead car when stopping, while being able to have smooth stop and go when reaccelerating
       self.sng = True
-      #x = [self.sng_speed * 0.7, self.sng_speed]  # decrease TR between 12.6 and 18 mph from 1.8s to defined TR above at 18mph while accelerating
+      x = [self.sng_speed * 0.7, self.sng_speed]  # decrease TR between 12.6 and 18 mph from 1.8s to defined TR above at 18mph while accelerating
       #x = [self.sng_speed * 1., self.sng_speed]
-      #y = [self.sng_TR, interp(self.sng_speed, x_vel, y_dist)]
+      y = [self.sng_TR, interp(self.sng_speed, x_vel, y_dist)]
       TR = interp(self.car_data.v_ego, x, y)
 
     return float(clip(TR, self.min_TR, 2.7))
