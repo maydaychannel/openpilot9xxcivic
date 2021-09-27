@@ -7,9 +7,9 @@ from common.op_params import opParams
 LongCtrlState = log.ControlsState.LongControlState
 
 #STOPPING_EGO_SPEED = 0.5    # Original value
-STOPPING_EGO_SPEED = 5.
+STOPPING_EGO_SPEED = 8.
 #STOPPING_TARGET_SPEED_OFFSET = 0.01
-STOPPING_TARGET_SPEED_OFFSET = 5.01
+STOPPING_TARGET_SPEED_OFFSET = 8.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
 
@@ -121,7 +121,8 @@ class LongControl():
       if not CS.standstill or output_gb > -BRAKE_STOPPING_TARGET:
         #output_gb -= CP.stoppingBrakeRate / RATE
         output_gb -= CP.stoppingBrakeRate / 10
-      output_gb = clip(output_gb, -brake_max, gas_max)
+      #output_gb = clip(output_gb, -brake_max, gas_max)    #Orig
+      output_gb = clip(output_gb, -1.2, gas_max)
 
       self.reset(CS.vEgo)
 
