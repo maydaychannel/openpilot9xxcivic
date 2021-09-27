@@ -80,7 +80,8 @@ class DynamicFollow:
     self.v_ego_retention = 2.5
     self.v_rel_retention = 1.75
 
-    self.sng_TR = 1.8  # reacceleration stop and go TR
+    #self.sng_TR = 1.8  # reacceleration stop and go TR   #Orig
+    self.sng_TR = 2.3
     self.sng_speed = 18.0 * CV.MPH_TO_MS
 
     self._setup_collector()
