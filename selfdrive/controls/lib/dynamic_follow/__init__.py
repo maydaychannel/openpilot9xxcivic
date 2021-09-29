@@ -82,7 +82,8 @@ class DynamicFollow:
 
     #self.sng_TR = 1.8  # reacceleration stop and go TR   #Orig
     self.sng_TR = 2.3
-    self.sng_speed = 18.0 * CV.MPH_TO_MS
+    #self.sng_speed = 18.0 * CV.MPH_TO_MS   #Orig
+    self.sng_speed = 12.0 * CV.MPH_TO_MS
 
     self._setup_collector()
     self._setup_changing_variables()
@@ -308,8 +309,8 @@ class DynamicFollow:
       #TR = TR
     else:  # this allows us to get closer to the lead car when stopping, while being able to have smooth stop and go when reaccelerating
       self.sng = True
-      #x = [self.sng_speed * 0.7, self.sng_speed]  # decrease TR between 12.6 and 18 mph from 1.8s to defined TR above at 18mph while accelerating
-      x = [self.sng_speed * 0.55, self.sng_speed]
+      x = [self.sng_speed * 0.7, self.sng_speed]  # decrease TR between 12.6 and 18 mph from 1.8s to defined TR above at 18mph while accelerating
+      #x = [self.sng_speed * 0.55, self.sng_speed]
       y = [self.sng_TR, interp(self.sng_speed, x_vel, y_dist)]
       TR = interp(self.car_data.v_ego, x, y)
 
