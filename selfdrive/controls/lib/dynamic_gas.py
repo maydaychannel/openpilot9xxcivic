@@ -25,8 +25,10 @@ class DynamicGas:
     if not self.supported_car or (self.CP.enableGasInterceptor and v_ego > MIN_ACC_SPEED):
       return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV))
 
+    lead = False
     gas = interp(v_ego, self.gasMaxBP, self.gasMaxV)
     if self.lead_data['status']:  # if lead
+      lead = True
       if v_ego <= 8.9408:  # if under 20 mph
         x = [0.0, 0.24588812499999999, 0.432818589, 0.593044697, 0.730381365, 1.050833588, 1.3965, 1.714627481]  # relative velocity mod
         #y = [0.9901, 0.905, 0.8045, 0.625, 0.431, 0.2083, .0667, 0]    # Original values
@@ -68,7 +70,7 @@ class DynamicGas:
           y = [1.0, 1.2875, 1.4625]
           gas *= interp(v_ego, x, y)
 
-    return float(clip(gas, 0.0, 1.0))
+    return float(clip(gas, 0.0, 1.0)), lead
 
   def set_profile(self):
     self.supported_car = True  # all pedal cars and some tuned non-pedal cars are supported
