@@ -22,12 +22,17 @@ class DynamicGas:
     self.handle_passable(CS, extra_params)
     brk_max = 0.1
 
+    if self.lead_data['status']:  # if lead
+      lead_car = 1
+    else:
+      lead_car = 0
+    
     # disable dynamic gas if car not supported OR if pedal and using stock ACC system with acceleration instead of gas
     if not self.supported_car or (self.CP.enableGasInterceptor and v_ego > MIN_ACC_SPEED):
       if self.lead_data['status']:  # if lead
         brk_max = interp(CS.vEgo, CP.brakeMaxBP, CP.brakeMaxV)
       #return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV))      #Original
-      return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV)), float(clip(brk_max, 0.0, 1.0))
+      return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV)), float(clip(brk_max, 0.0, 1.0)), lead_car
 
     gas = interp(v_ego, self.gasMaxBP, self.gasMaxV)
     if self.lead_data['status']:  # if lead
@@ -73,7 +78,7 @@ class DynamicGas:
           y = [1.0, 1.2875, 1.4625]
           gas *= interp(v_ego, x, y)
 
-    return float(clip(gas, 0.0, 1.0)), float(clip(brk_max, 0.0, 1.0))
+    return float(clip(gas, 0.0, 1.0)), float(clip(brk_max, 0.0, 1.0)), lead_car
 
   def set_profile(self):
     self.supported_car = True  # all pedal cars and some tuned non-pedal cars are supported
