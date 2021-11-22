@@ -85,7 +85,7 @@ class LongControl():
     brake_max = interp(CS.vEgo, CP.brakeMaxBP, CP.brakeMaxV)
 
     if self.op_params.get('dynamic_gas'):
-      gas_max, brake_max = self.dynamic_gas.update(CS, extras)
+      gas_max, brake_max, lead_car = self.dynamic_gas.update(CS, extras)
 
     # Update state machine
     output_gb = self.last_output_gb
