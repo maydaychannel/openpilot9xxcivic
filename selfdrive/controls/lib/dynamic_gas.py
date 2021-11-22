@@ -26,6 +26,7 @@ class DynamicGas:
       return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV))
 
     gas = interp(v_ego, self.gasMaxBP, self.gasMaxV)
+    brake_max = 1.2
     if self.lead_data['status']:  # if lead
       brake_max = 0.1
       if v_ego <= 8.9408:  # if under 20 mph
