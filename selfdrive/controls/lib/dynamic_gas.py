@@ -36,7 +36,7 @@ class DynamicGas:
 
     gas = interp(v_ego, self.gasMaxBP, self.gasMaxV)
     if self.lead_data['status']:  # if lead
-      brk_max = interp(CS.vEgo, CP.brakeMaxBP, CP.brakeMaxV)
+      brk_max = interp(v_ego, self.CP.brakeMaxBP, self.CP.brakeMaxV)
       if v_ego <= 8.9408:  # if under 20 mph
         x = [0.0, 0.24588812499999999, 0.432818589, 0.593044697, 0.730381365, 1.050833588, 1.3965, 1.714627481]  # relative velocity mod
         #y = [0.9901, 0.905, 0.8045, 0.625, 0.431, 0.2083, .0667, 0]    # Original values
