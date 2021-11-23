@@ -30,7 +30,7 @@ class DynamicGas:
     # disable dynamic gas if car not supported OR if pedal and using stock ACC system with acceleration instead of gas
     if not self.supported_car or (self.CP.enableGasInterceptor and v_ego > MIN_ACC_SPEED):
       if self.lead_data['status']:  # if lead
-        brk_max = interp(vEgo, self.CP.brakeMaxBP, self.CP.brakeMaxV)
+        brk_max = interp(v_ego, self.CP.brakeMaxBP, self.CP.brakeMaxV)
       #return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV))      #Original
       return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV)), float(clip(brk_max, 0.0, 1.0)), lead_car
 
