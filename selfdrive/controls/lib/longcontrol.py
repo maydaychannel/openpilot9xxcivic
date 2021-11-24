@@ -69,7 +69,10 @@ class LongControl():
                                  convert=compute_gb)
     self.v_pid = 0.0
     self.last_output_gb = 0.0
-
+    self.rst = 0
+    self.count = 0
+    self.accel_limiter = 0
+    
     self.op_params = opParams()
     self.dynamic_gas = DynamicGas(CP, candidate)
 
@@ -98,6 +101,9 @@ class LongControl():
     if self.long_control_state == LongCtrlState.off or CS.gasPressed:
       self.reset(v_ego_pid)
       output_gb = 0.
+      self.rst = 0
+      self.count = 0
+      self.accel_limiter = 0
 
     # tracking objects and driving
     elif self.long_control_state == LongCtrlState.pid:
@@ -112,8 +118,17 @@ class LongControl():
 
       output_gb = self.pid.update(self.v_pid, v_ego_pid, speed=v_ego_pid, deadzone=deadzone, feedforward=a_target, freeze_integrator=prevent_overshoot)
 
+      if self.accel_limiter and not lead_car:
+        if (output_gb - self.last_output_gb) > 0.01:
+          output_gb = self.last_output_gb + 0.01
+      
       if prevent_overshoot:
         output_gb = min(output_gb, 0.0)
+      
+      self.count++
+      if self.count > 200:
+        self.accel_limiter = 1
+        self.count = 0
 
     # Intention is to stop, switch to a different brake control until we stop
     elif self.long_control_state == LongCtrlState.stopping:
