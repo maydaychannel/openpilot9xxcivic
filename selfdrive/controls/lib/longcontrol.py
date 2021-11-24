@@ -125,7 +125,7 @@ class LongControl():
       if prevent_overshoot:
         output_gb = min(output_gb, 0.0)
       
-      self.count++
+      self.count = self.count + 1
       if self.count > 200:
         self.accel_limiter = 1
         self.count = 0
