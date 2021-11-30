@@ -12,6 +12,8 @@ STOPPING_EGO_SPEED = 8.
 STOPPING_TARGET_SPEED_OFFSET = 8.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
+GdMAX_V = [7, 14, 22, 28, 35]
+GdMAX_OUT = [0.002, 0.005, 0.01, 0.02, 0.05]
 
 BRAKE_STOPPING_TARGET = 0.5  # apply at least this amount of brake to maintain the vehicle stationary
 
@@ -118,9 +120,11 @@ class LongControl():
 
       output_gb = self.pid.update(self.v_pid, v_ego_pid, speed=v_ego_pid, deadzone=deadzone, feedforward=a_target, freeze_integrator=prevent_overshoot)
 
+      gb_limit = interp(CS.vEgo, GdMAX_V, GdMAX_OUT)
+      
       if self.accel_limiter and not lead_car:
-        if (output_gb - self.last_output_gb) > 0.01:
-          output_gb = self.last_output_gb + 0.01
+        if (output_gb - self.last_output_gb) > gb_limit:
+          output_gb = self.last_output_gb + gb_limit
       
       if prevent_overshoot:
         output_gb = min(output_gb, 0.0)
