@@ -63,7 +63,11 @@ class CarController():
     self.lead_v = 100
     self.lead_a = 0
     self.lead_d = 250
-    self.sm = messaging.SubMaster(['radarState'])
+    self.sm = messaging.SubMaster(['radarState', 'controlsState'])
+    #self.sm = messaging.SubMaster(['radarState'])
+    
+    self.LCS = ""
+    #self.cm = messaging.Submaster(['controlsState'])
 
 
   def update(self, enabled, CS, frame, actuators, pcm_cancel_cmd, hud_alert,
@@ -75,6 +79,10 @@ class CarController():
       self.lead_v = self.sm['radarState'].leadOne.vRel
       self.lead_a = self.sm['radarState'].leadOne.aRel
       self.lead_d = self.sm['radarState'].leadOne.dRel
+    if self.sm.updated['controlsState']:
+      self.LCS = self.sm['controlsState'].longControlState
+      if frame % 500 == 0:    # *** 5 sec interval? ***
+        print(self.LCS)
 
     # gas and brake
 #    apply_gas = 0.
