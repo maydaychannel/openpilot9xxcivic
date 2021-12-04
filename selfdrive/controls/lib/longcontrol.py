@@ -13,7 +13,8 @@ STOPPING_TARGET_SPEED_OFFSET = 8.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
 GdMAX_V = [7, 14, 22, 28, 35]
-GdMAX_OUT = [0.002, 0.005, 0.01, 0.02, 0.05]
+#GdMAX_OUT = [0.002, 0.005, 0.01, 0.02, 0.05]
+GdMAX_OUT = [0.001, 0.002, 0.005, 0.01, 0.02]
 
 BRAKE_STOPPING_TARGET = 0.5  # apply at least this amount of brake to maintain the vehicle stationary
 
