@@ -23,6 +23,7 @@ keys = {
   b"CarVin": [TxType.CLEAR_ON_MANAGER_START, TxType.CLEAR_ON_PANDA_DISCONNECT],
   b"CommunityFeaturesToggle": [TxType.PERSISTENT],
   b"CompletedTrainingVersion": [TxType.PERSISTENT],
+  b"CustomToggle": [TxType.PERSISTENT],
   b"DisablePowerDown": [TxType.PERSISTENT],
   b"DisableUpdates": [TxType.PERSISTENT],
   b"DoUninstall": [TxType.CLEAR_ON_MANAGER_START],
