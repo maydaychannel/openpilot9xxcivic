@@ -104,7 +104,7 @@ QWidget * toggles_panel() {
                                             ));
   toggles_list->addWidget(horizontal_line());
   toggles_list->addWidget(new ParamsToggle("IsRHD",
-                                            "Enable Right-Hand Drive",
+                                            "Change Enable RHD to own stuff",
                                             "Allow openpilot to obey left-hand traffic conventions and perform driver monitoring on right driver seat.",
                                             "../assets/offroad/icon_openpilot_mirrored.png"
                                             ));
