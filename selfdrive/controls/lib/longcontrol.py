@@ -124,7 +124,8 @@ class LongControl():
 
       gb_limit = interp(CS.vEgo, GdMAX_V, GdMAX_OUT)
       
-      if self.accel_limiter and not lead_car:
+      #if self.accel_limiter and not lead_car:
+      if self.accel_limiter and output_gb > 0:   # Test if this is good for lead car also
         if (output_gb - self.last_output_gb) > gb_limit:
           output_gb = self.last_output_gb + gb_limit
       
