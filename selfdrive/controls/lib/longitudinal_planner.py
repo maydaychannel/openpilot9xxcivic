@@ -147,7 +147,8 @@ class Planner():
 
       if self.op_params.get('accel_lag_compensation'):
         #accel_delay = interp(speed * CV.MS_TO_MPH, [10, 80], [0.2, 0.4])    #Original
-        accel_delay = interp(speed * CV.MS_TO_KPH, [10, 150], [1.6, 1.7])
+        #accel_delay = interp(speed * CV.MS_TO_KPH, [10, 150], [1.6, 1.7])   # Last value, worked OK
+        accel_delay = interp(speed * CV.MS_TO_KPH, [10, 80], [.6, .8]) 
       else:
         accel_delay = 0.
 
