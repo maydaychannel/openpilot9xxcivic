@@ -81,7 +81,8 @@ class DynamicFollow:
     self.v_rel_retention = 1.75
 
     #self.sng_TR = 1.8  # reacceleration stop and go TR   #Orig
-    self.sng_TR = 2.3
+    #self.sng_TR = 2.3  # Last value
+    self.sng_TR = 1.5   # Try to decrease stop and start TR so would start move faster from stop
     #self.sng_speed = 18.0 * CV.MPH_TO_MS   #Orig
     self.sng_speed = 12.0 * CV.MPH_TO_MS
 
