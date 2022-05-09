@@ -84,8 +84,8 @@ class DynamicFollow:
     #self.sng_TR = 2.3  # Last value
     #self.sng_TR = 1.5   # Try to decrease stop and start TR so would start move faster from stop
     self.sng_TR = 1.   # Try to decrease stop and start TR so would start move faster from stop
-    #self.sng_speed = 18.0 * CV.MPH_TO_MS   #Orig
-    self.sng_speed = 12.0 * CV.MPH_TO_MS
+    self.sng_speed = 18.0 * CV.MPH_TO_MS   #Orig
+    #self.sng_speed = 12.0 * CV.MPH_TO_MS
 
     self._setup_collector()
     self._setup_changing_variables()
