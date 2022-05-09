@@ -43,8 +43,9 @@ class DynamicGas:
         #y = [0.9901, 0.905, 0.8045, 0.625, 0.431, 0.2083, .0667, 0]    # Original values
         #y = [0.9901, 0.7, 0.5, 0.4, 0.3, 0.1, .02, 0]
         #y = [0.9901, 0.5, 0.35, 0.2, 0.15, 0.05, .02, 0]
-        y = [0.9901, 0.4, 0.15, 0.05, 0, 0, 0, 0]                    # This was the last used values
+        #y = [0.9901, 0.4, 0.15, 0.05, 0, 0, 0, 0]                    # This was the last used values
         #y = [0.801, 0.2, 0.1, 0, 0, 0, 0, 0]
+        y = [0.501, 0.2, 0.1, 0, 0, 0, 0, 0]                          # New try
         gas_mod = -(gas * interp(self.lead_data['v_rel'], x, y))
 
         x = [0.44704, 1.1176, 1.34112]  # lead accel mod
