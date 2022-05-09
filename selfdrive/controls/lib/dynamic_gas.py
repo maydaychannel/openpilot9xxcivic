@@ -21,6 +21,7 @@ class DynamicGas:
     v_ego = CS.vEgo
     self.handle_passable(CS, extra_params)
     brk_max = 0.1
+    dRel = self.lead_data['x_lead']
 
     if self.lead_data['status']:  # if lead
       lead_car = 1
@@ -32,7 +33,7 @@ class DynamicGas:
       if self.lead_data['status']:  # if lead
         brk_max = interp(v_ego, self.CP.brakeMaxBP, self.CP.brakeMaxV)
       #return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV))      #Original
-      return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV)), float(clip(brk_max, 0.0, 1.0)), lead_car
+      return float(interp(v_ego, self.CP.gasMaxBP, self.CP.gasMaxV)), float(clip(brk_max, 0.0, 1.0)), lead_car, dRel
 
     gas = interp(v_ego, self.gasMaxBP, self.gasMaxV)
     if self.lead_data['status']:  # if lead
@@ -78,7 +79,7 @@ class DynamicGas:
           y = [1.0, 1.2875, 1.4625]
           gas *= interp(v_ego, x, y)
 
-    return float(clip(gas, 0.0, 1.0)), float(clip(brk_max, 0.0, 1.0)), lead_car
+    return float(clip(gas, 0.0, 1.0)), float(clip(brk_max, 0.0, 1.0)), lead_car, dRel
 
   def set_profile(self):
     self.supported_car = True  # all pedal cars and some tuned non-pedal cars are supported
