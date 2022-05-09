@@ -40,10 +40,10 @@ class DynamicGas:
       brk_max = interp(v_ego, self.CP.brakeMaxBP, self.CP.brakeMaxV)
       if v_ego <= 8.9408:  # if under 20 mph
         x = [0.0, 0.24588812499999999, 0.432818589, 0.593044697, 0.730381365, 1.050833588, 1.3965, 1.714627481]  # relative velocity mod
-        y = [0.9901, 0.905, 0.8045, 0.625, 0.431, 0.2083, .0667, 0]    # Original values
+        #y = [0.9901, 0.905, 0.8045, 0.625, 0.431, 0.2083, .0667, 0]    # Original values
         #y = [0.9901, 0.7, 0.5, 0.4, 0.3, 0.1, .02, 0]
         #y = [0.9901, 0.5, 0.35, 0.2, 0.15, 0.05, .02, 0]
-        #y = [0.9901, 0.4, 0.15, 0.05, 0, 0, 0, 0]                    # This was the last used values
+        y = [0.9901, 0.4, 0.15, 0.05, 0, 0, 0, 0]                    # This was the last used values
         #y = [0.801, 0.2, 0.1, 0, 0, 0, 0, 0]
         gas_mod = -(gas * interp(self.lead_data['v_rel'], x, y))
 
