@@ -84,6 +84,7 @@ class DynamicFollow:
     #self.sng_TR = 2.3  # Last value
     #self.sng_TR = 1.5   # Try to decrease stop and start TR so would start move faster from stop
     self.sng_TR = 1.   # Try to decrease stop and start TR so would start move faster from stop
+    self.sng_TR = 2.5   # Maybe I thought this wrong
     self.sng_speed = 18.0 * CV.MPH_TO_MS   #Orig
     #self.sng_speed = 12.0 * CV.MPH_TO_MS
 
@@ -289,7 +290,8 @@ class DynamicFollow:
       #y_dist = [1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.612, 1.621, 1.632, 1.648]
       #y_dist = [1.411, 1.418, 1.8, 1.9, 2.1, 2.0, 1.8, 1.6, 1.6, 1.612, 1.621, 1.632, 1.648]
       #y_dist = [1.8, 1.8, 1.8, 1.9, 2.1, 2.0, 1.8, 1.6, 1.6, 1.55, 1.5, 1.45, 1.4]      # Last used
-      y_dist = [3., 2.6, 2.2, 2.1, 2.1, 2.0, 1.8, 1.6, 1.6, 1.55, 1.5, 1.45, 1.4]
+      #y_dist = [3., 2.6, 2.2, 2.1, 2.1, 2.0, 1.8, 1.6, 1.6, 1.55, 1.5, 1.45, 1.4]
+      y_dist = [3., 2.6, 2.2, 2.1, 2.1, 2.0, 1.8, 1.7, 1.7, 1.65, 1.55, 1.45, 1.4]
     else:
       raise Exception('Unknown profile type: {}'.format(df_profile))
 
