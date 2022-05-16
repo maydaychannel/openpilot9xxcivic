@@ -147,7 +147,7 @@ class LongControl():
         #output_gb -= CP.stoppingBrakeRate / RATE
         output_gb -= CP.stoppingBrakeRate / 10
       #output_gb = clip(output_gb, -brake_max, gas_max)    #Orig
-      output_gb = clip(output_gb, -.4, gas_max)
+      output_gb = clip(output_gb, -.45, gas_max)
 
       self.reset(CS.vEgo)
 
