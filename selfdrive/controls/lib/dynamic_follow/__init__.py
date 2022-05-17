@@ -176,7 +176,8 @@ class DynamicFollow:
   def _change_cost(self, libmpc):
     TRs = [0.9, 1.8, 2.7]
     #costs = [1., 0.1, 0.01]     #Original values
-    costs = [1., 0.5, 0.1]
+    #costs = [1., 0.5, 0.1]      # Last values
+    costs = [1., 0.75, 0.5]
     cost = interp(self.TR, TRs, costs)
 
     # change_time = sec_since_boot() - self.profile_change_time
