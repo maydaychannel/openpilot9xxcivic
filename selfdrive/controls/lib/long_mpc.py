@@ -9,7 +9,8 @@ from selfdrive.controls.lib.longitudinal_mpc import libmpc_py
 from selfdrive.controls.lib.drive_helpers import MPC_COST_LONG
 from selfdrive.controls.lib.dynamic_follow import DynamicFollow
 
-LOG_MPC = os.environ.get('LOG_MPC', False)
+#LOG_MPC = os.environ.get('LOG_MPC', False)
+LOG_MPC = True
 
 
 class LongitudinalMpc():
