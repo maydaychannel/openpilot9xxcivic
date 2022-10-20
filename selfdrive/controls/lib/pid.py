@@ -164,6 +164,10 @@ class LongPIDController:
   def update(self, setpoint, measurement, speed=0.0, check_saturation=True, override=False, feedforward=0., deadzone=0., freeze_integrator=False):
     self.speed = speed
 
+     # Try to implement smoother speed setpoint transitions
+    if setpoint - self.last_setpoint > 0.1:
+      setpoint = self.last_setpoint + 0.1
+    
     error = float(apply_deadzone(setpoint - measurement, deadzone))
 
     self.p = error * self.k_p
@@ -200,5 +204,5 @@ class LongPIDController:
     self.last_setpoint = float(setpoint)
     self.last_error = float(error)
 
-    self.control = clip(control, self.neg_limit, self.pos_limit)
+    self.control = clip(control, self.neg_limit, self.pos_limit)          # Maybe could implement pos.limiter to make set speed transitions smoother or maybe use lower jerk values in longitudinal_planner.py
     return self.control
