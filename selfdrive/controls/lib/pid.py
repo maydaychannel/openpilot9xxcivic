@@ -161,12 +161,12 @@ class LongPIDController:
     self.last_setpoint = 0.0
     self.last_error = 0.0
 
-  def update(self, setpoint, measurement, speed=0.0, check_saturation=True, override=False, feedforward=0., deadzone=0., freeze_integrator=False):
+  def update(self, setpoint, measurement, speed=0.0, check_saturation=True, override=False, feedforward=0., deadzone=0., freeze_integrator=False, lead=0):
     self.speed = speed
 
      # Try to implement smoother speed setpoint transitions
-    if setpoint - self.last_setpoint > 0.1:
-      setpoint = self.last_setpoint + 0.1
+    if setpoint - self.last_setpoint > 0.15 and not lead:
+      setpoint = self.last_setpoint + 0.15
     
     error = float(apply_deadzone(setpoint - measurement, deadzone))
 
