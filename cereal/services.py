@@ -57,7 +57,7 @@ service_list = {
   "modelV2": Service(8077, True, 20., 20),
   "managerState": Service(8078, True, 2., 1),
 
-  "dynamicFollowData": Service(8079, False, 20.),
+  "dynamicFollowData": Service(8079, True, 20.),
   "dynamicFollowButton": Service(8081, False, 0.),  # 8080 is reverved
   "laneSpeed": Service(8082, False, 0.),
   "laneSpeedButton": Service(8083, False, 0.),
