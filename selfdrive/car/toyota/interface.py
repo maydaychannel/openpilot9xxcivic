@@ -135,7 +135,7 @@ class CarInterface(CarInterfaceBase):
       ret.enableGasInterceptor = True #OLD_CAR USES ALWAYS INTERCEPTOR MESSAGE FOR GAS
 
       if ret.enableGasInterceptor:
-        ret.longitudinalTuning.kpV = [0.4, 0.6, 0.7]
+        ret.longitudinalTuning.kpV = [0.3, 0.6, 0.7]
         ret.longitudinalTuning.kiV = [0.2, 0.35, 0.5]
 
       ret.lateralTuning.init('lqr')
