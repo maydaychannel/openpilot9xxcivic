@@ -15,6 +15,10 @@ In short, OPENPILOT is a LEVEL 2 ADAS (Advanced Driver Assistance System) softwa
 ## OPENPILOT hardware
 To run OPENPILOT, you need hardware that is compatible with it. COMMA AI produces their own device, the COMMA THREE (https://github.com/commaai/openpilot/wiki/comma-three), but older hardware has also been developed by COMMA, such as the COMMA TWO (https://github.com/commaai/openpilot/wiki/comma-two) and EON. Additionally, it is possible to run OPENPILOT on a Linux PC.
 
+Video of COMMA TWO:
+
+[![](https://i3.ytimg.com/vi/fToVz1XB0x0/maxresdefault.jpg)](https://www.youtube.com/watch?v=fToVz1XB0x0)
+
 # FrEON
 FrEON is the name of a phone that is capable of running OPENPILOT, and is encased in a 3D-printed case with some type of DIY cooling system. Only two phone models can currently run the older version of the OPENPILOT software: the OnePlus 3T and the LeEco Le Pro 3 (great name don't you think).
 
