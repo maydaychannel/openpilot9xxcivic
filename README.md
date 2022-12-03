@@ -6,7 +6,7 @@ OPENPILOT is an open source driver assistance system that offers Automated Lane 
 
 Video introducing OPENPILOT.
 
-[![](https://img.youtube.com/vi/NmBfgOanCyk/0.jpg)](https://youtu.be/NmBfgOanCyk)
+[![](https://i3.ytimg.com/vi/NmBfgOanCyk/maxresdefault.jpg)](https://youtu.be/NmBfgOanCyk)
 
 OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor one can quickly learn. For someone to take deeper look into how OPENPILOT works, here's couple reads: https://blog.comma.ai/openpilot-in-2021/ https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
 
