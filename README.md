@@ -58,6 +58,7 @@ On the same CAN bus are as shown in the picture are:
 
 Communication between Panda and FrEON takes place via USB.
 
+
 OPENPILOT listen following states from CAN bus:
 - Wheel speeds (car speed)
 - Gas pedal state
@@ -71,9 +72,11 @@ OPENPILOT listen following states from CAN bus:
 - Cruise state (engage/disengage OP)
 
 OPENPILOT sends to CAN bus:
-- Gas pedal request message
-- Brake demand message
+- Gas pedal request message (to gas interceptor)
+- Brake demand message (to BrakeModule)
 - Cruise control cancel request message
+- Lead car info message (debug)
+- TOYOTA instrument cluster ui message (legacy, not really needed)
 
 ## My forks software mods in default branch:
 Few mods have been done to this fork order to work with my car and my likenings. On high level:
