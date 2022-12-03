@@ -17,7 +17,7 @@ To run OPENPILOT you need hardware that can run on it. COMMA AI produces their o
 FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
 
 <p align="center">
-[![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
+  [![](http://i3.ytimg.com/vi/L1u6AkSpR98/hqdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
 </p>
 
 # Panda
