@@ -1,3 +1,66 @@
+# OPENPILOT for MY99 BMW 540i (E39)
+This project was created to solve the need for a MY99 BMW 540i (E39) to drive by itself.
+
+## What is OPENPILOT
+OPENPILOT is an open source driver assistance system that offers Automated Lane Centering and Adaptive Cruise Control for over 200 supported car makes and models. To function properly, OPENPILOT needs to be able to control the longitudinal (gas and brake) and lateral (steering) movements of the car using the CAN bus. For more information, see https://github.com/commaai/openpilot.
+
+Video introducing OPENPILOT.
+
+[![](https://img.youtube.com/vi/NmBfgOanCyk/0.jpg)](https://youtu.be/NmBfgOanCyk)
+
+OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor one can quickly learn. For someone to take deeper look into how OPENPILOT works, here's couple reads: https://blog.comma.ai/openpilot-in-2021/ https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
+
+## OPENPILOT HARDWARE
+To run OPENPILOT you need hardware that can run on it. COMMA AI produces their own device COMMA THREE https://github.com/commaai/openpilot/wiki/comma-three, older HW has been also made by COMMA eg. COMMA TWO https://github.com/commaai/openpilot/wiki/comma-two and EON. You can run OPENPILOT also on linux PC.
+
+# FrEON
+FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
+
+# Panda
+Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device. It is CAN interfacing devices that has high precision GPS and it'll power the COMMA/FrEON (https://github.com/commaai/panda). There have been 4 different kind of Pandas, White, Grey, Black and the newest is Red. Here's a white panda (old) hardware guide: https://github.com/commaai/panda/blob/master/docs/guide.pdf.
+
+# Additional Hardware
+To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS cababitlity this is achived by intercepting the CAN bus messages, but in older cars you usually needs to add the controlling hardware. In my case this is done for gas intercepting the gas pedal sensor signals with COMMA PEDAL (https://github.com/commaai/openpilot/wiki/comma-pedal) type of hardware and brake using my own designed BrakeModule (https://github.com/killinen/BrakeModule). I don't yet have lateral control).
+
+Heres a quite good video that shows what is needed for maiking OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L1u6AkSpR98" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Configuration
+So devices that are interfacing with my car are:
+- Panda (Grey)
+- Gas interceptor
+- BrakeModule
+
+These all talk to each other vai BMW's original CAN bus:
+
+![Bus Topology I -K-M-P-Can-Diagnostic](https://user-images.githubusercontent.com/37126045/205412230-d4519533-0346-42c4-b3b5-591e453f1f85.jpg)
+
+On the same CAN bus are as shown in the picture are:
+- Panda (OP)
+- BrakeModule (BM)
+- Steering Angle Sensor (LEW)
+- BOSCH ABS module (DSCIII)
+- Motor contor unit (DME)
+
+Communication between Panda and FrEON takes place via USB.
+
+## My forks SW mods in default branch:
+Few mods have been done to this fork order to work with my car and my likenings. On high level:
+- Add E39 CAN msgs configuration to opendbc
+- Detect BMW as OLD_CAR which is detected as TOYOTA COROLLA (fingerprinting)
+- Panda SW mods to accept BMW CAN msg's
+- Disable steering requests
+- Enable vision only longitudinal control and improve it (ACC wo radar)
+- Made stop and go work good enough
+- Made smoothing of gas output to lessen jerk when accelerating
+- Add OP3T support
+
+To be clear my car does not yet have steering capability but this system is used as vision based ACC which have stop and go functionality. Even this emproves my driving experience to the point that if for some reason I don't have OPENPILOT working it bums me.
+
+### Below is notes from Shane Smiskol whos Stock Additions fork is integrated in my fork, which has great additions to stock OPENPILOT
+
 # Stock Additions [Update 3](/SA_RELEASES.md) (0.8.2)
 
 Stock Additions is a fork of openpilot designed to be minimal in design while boasting various feature additions and behavior improvements over stock. I have a 2017 Toyota Corolla with comma pedal, so most of my changes are designed to improve the longitudinal performance.
