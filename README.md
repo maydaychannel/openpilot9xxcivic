@@ -65,6 +65,8 @@ Few mods have been done to this fork order to work with my car and my likenings.
 - Made smoothing of gas output to lessen jerk when accelerating
 - Add OP3T support
 
+Default branch is based on openpilot version 0.8.2, in December of 2022 there is already openpilot version 0.9 which is much more capable than this older one. Unfortunetally my hardware isn't supported anymore.
+
 To be clear my car does not yet have steering capability but this system is used as vision based ACC which have stop and go functionality. Even this emproves my driving experience to the point that if for some reason I don't have OPENPILOT working it bums me.
 
 ### Below is notes from Shane Smiskol whos Stock Additions fork is integrated in my fork, which has great additions to stock OPENPILOT
