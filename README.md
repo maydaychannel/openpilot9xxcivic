@@ -29,7 +29,7 @@ To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal
 Heres a quite good video that shows what is needed for maiking OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
 
 
-[![](http://i3.ytimg.com/vi/L1u6AkSpR98/hqdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
+[![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
  
 ## Configuration
