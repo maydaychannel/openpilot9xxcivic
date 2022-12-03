@@ -24,6 +24,8 @@ Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device
 Video showing Grey and Black Panda:
 [![Video showing Grey and Black Panda](https://i3.ytimg.com/vi/0iKRq7-kywI/maxresdefault.jpg)](https://www.youtube.com/watch?v=0iKRq7-kywI)
 
+On cars that have ADAS Pandas working principle is little diffrent where it has to intercept CAN bus messages than in my use case (I won't go any deeper here into it). In my much simpler use is just that it talk to one CAN bus and it needs to be connected to 12V, GND and IGN lines to function properly.
+
 # Additional Hardware
 To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS cababitlity this is achived by intercepting the CAN bus messages, but in older cars you usually needs to add the controlling hardware. In my case this is done for gas intercepting the gas pedal sensor signals with COMMA PEDAL (https://github.com/commaai/openpilot/wiki/comma-pedal) type of hardware and brake using my own designed BrakeModule (https://github.com/killinen/BrakeModule). I don't yet have lateral control).
 
