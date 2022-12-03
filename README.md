@@ -16,9 +16,7 @@ To run OPENPILOT you need hardware that can run on it. COMMA AI produces their o
 # FrEON
 FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
 
-
-[![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
-
+[![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
 # Panda
 Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device. It is CAN interfacing devices that has high precision GPS and it'll power the COMMA/FrEON (https://github.com/commaai/panda). There have been 4 different kind of Pandas, White, Grey, Black and the newest is Red. Here's a white panda (old) hardware guide: https://github.com/commaai/panda/blob/master/docs/guide.pdf.
@@ -28,9 +26,7 @@ To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal
 
 Heres a quite good video that shows what is needed for maiking OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
 
-
-[![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
-
+[![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
  
 ## Configuration
 So devices that are interfacing with my car are:
