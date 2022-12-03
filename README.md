@@ -1,5 +1,5 @@
 # OPENPILOT for MY99 BMW 540i (E39)
-This project was created to solve the need for a MY99 BMW 540i (E39) to drive by itself.
+This project was created to solve the need for a MY99 BMW 540i (E39) to drive autonomously.
 
 ## What is OPENPILOT
 OPENPILOT is an open source driver assistance system that offers Automated Lane Centering and Adaptive Cruise Control for over 200 supported car makes and models. To function properly, OPENPILOT needs to be able to control the longitudinal (gas and brake) and lateral (steering) movements of the car using the CAN bus. For more information, see https://comma.ai/ and https://github.com/commaai/openpilot.
@@ -8,30 +8,30 @@ Video introducing OPENPILOT.
 
 [![](https://i3.ytimg.com/vi/NmBfgOanCyk/maxresdefault.jpg)](https://youtu.be/NmBfgOanCyk)
 
-OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor one can quickly learn. For someone to take deeper look into how OPENPILOT works, here's couple reads: https://blog.comma.ai/openpilot-in-2021/ https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
+OPENPILOT is a complex robotics platform that can be difficult to explain or quickly learn about. For those interested in taking a deeper look at how OPENPILOT works, the following resources may be helpful: https://blog.comma.ai/openpilot-in-2021/ and https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
 
-In short OPENPILOT is LEVEL 2 ADAS software that runs on device that has one camera for recording the drive view. Another camera for driver monitoring. The device is connected or it has integrated device that can talk to CAN bus and has high precision GPS on it (eg. Panda). OPENPILOT inputs those camera feeds runs ML model through it, evaluate car state from sensors and CAN bus messages and output from those are longitudinal and lateral control commands.
+In short, OPENPILOT is a LEVEL 2 ADAS (Advanced Driver Assistance System) software that runs on a device with two cameras: one for recording the view of the road and another for driver monitoring. The device must also be connected to or have an integrated device that can communicate with the CAN bus and has high-precision GPS (e.g. Panda). OPENPILOT takes in the camera feeds, runs them through an ML model, evaluates the car's state using sensor and CAN bus data, and outputs longitudinal and lateral control commands based on that information. This allows the system to make intelligent, real-time decisions about how to control the car.
 
 ## OPENPILOT hardware
-To run OPENPILOT you need hardware that can run on it. COMMA AI produces their own device COMMA THREE https://github.com/commaai/openpilot/wiki/comma-three, older HW has been also made by COMMA eg. COMMA TWO https://github.com/commaai/openpilot/wiki/comma-two and EON. You can run OPENPILOT also on linux PC.
+To run OPENPILOT, you need hardware that is compatible with it. COMMA AI produces their own device, the COMMA THREE (https://github.com/commaai/openpilot/wiki/comma-three), but older hardware has also been developed by COMMA, such as the COMMA TWO (https://github.com/commaai/openpilot/wiki/comma-two) and EON. Additionally, it is possible to run OPENPILOT on a Linux PC.
 
 # FrEON
-FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
+FrEON is the name of a phone that is capable of running OPENPILOT, and is encased in a 3D-printed case with some type of DIY cooling system. Only two phone models can currently run the older version of the OPENPILOT software: the OnePlus 3T and the LeEco Le Pro 3 (great name don't you think).
 
 [![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
 # Panda
-Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device. It is CAN interfacing devices that has high precision GPS and it'll power the COMMA/FrEON (https://github.com/commaai/panda). There have been 4 different kind of Pandas, White, Grey, Black and the newest is Red. Here's a white panda (old) hardware guide: https://github.com/commaai/panda/blob/master/docs/guide.pdf.
+Panda is a crucial part of the OPENPILOT ecosystem, along with the COMMA/FrEON device. It is a CAN interfacing device that has high-precision GPS and is used to power the COMMA/FrEON (https://github.com/commaai/panda). There have been four different types of Pandas, including White, Grey, Black, and the newest version, Red. The following is a hardware guide for the White Panda (an older version): https://github.com/commaai/panda/blob/master/docs/guide.pdf.
 
 Video showing Grey and Black Panda:
 [![Video showing Grey and Black Panda](https://i3.ytimg.com/vi/0iKRq7-kywI/maxresdefault.jpg)](https://www.youtube.com/watch?v=0iKRq7-kywI)
 
-On cars that have ADAS Pandas working principle is little diffrent where it has to intercept CAN bus messages than in my use case (I won't go any deeper here into it). In my much simpler use is just that it talk to one CAN bus and it needs to be connected to 12V, GND and IGN lines to function properly.
+On cars that have ADAS, the working principle of Pandas is slightly different, as they need to intercept CAN bus messages. In my simpler use case, Panda simply communicates with a single CAN bus and requires connections to 12V, GND, and IGN lines to function properly. I won't go into more detail about the differences in the working principle of Pandas in this context.
 
 # Additional hardware
-To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS cababitlity this is achived by intercepting the CAN bus messages, but in older cars you usually needs to add the controlling hardware. In my case this is done for gas intercepting the gas pedal sensor signals with COMMA PEDAL (https://github.com/commaai/openpilot/wiki/comma-pedal) type of hardware and brake using my own designed BrakeModule (https://github.com/killinen/BrakeModule). I don't yet have lateral control).
+For OPENPILOT to work correctly, it needs to have both lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS capabilities, this is achieved by intercepting the CAN bus messages, but in older cars, additional hardware is usually required to add this control. In my case, this is done by intercepting the gas pedal sensor signals with a COMMA PEDAL type of hardware for the gas (https://github.com/commaai/openpilot/wiki/comma-pedal), and using my own designed BrakeModule for the brake (https://github.com/killinen/BrakeModule). I currently do not have lateral control.
 
-Heres a quite good video that shows what is needed for making OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
+The following video provides a good overview of what is needed to make OPENPILOT work on an older car. The solution shown in the video is slightly different from mine, and does not include braking capabilities, but it still illustrates the basic idea behind the system:
 
 [![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
  
@@ -65,9 +65,9 @@ Few mods have been done to this fork order to work with my car and my likenings.
 - Made smoothing of gas output to lessen jerk when accelerating
 - Add OP3T support
 
-Default branch is based on openpilot version 0.8.2, in December of 2022 there is already openpilot version 0.9 which is much more capable than this older one. Unfortunetally my hardware isn't supported anymore.
+Default branch is based on openpilot version 0.8.2. In December of 2022 there is already openpilot version 0.9, which is much more capable than this older one. However, my hardware is no longer supported by the newer version of the software.
 
-To be clear my car does not yet have steering capability but this system is used as vision based ACC which have stop and go functionality. Even this emproves my driving experience to the point that if for some reason I don't have OPENPILOT working it bums me.
+my car does not currently have steering capabilities. However, the system I am using offers vision-based ACC with stop and go functionality, which greatly improves my driving experience. In fact, if for some reason OPENPILOT is not working, it bums me.
 
 ### Below is notes from Shane Smiskol whos Stock Additions fork is integrated in my fork, which has great additions to stock OPENPILOT
 
