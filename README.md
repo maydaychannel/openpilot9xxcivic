@@ -10,6 +10,8 @@ Video introducing OPENPILOT.
 
 OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor one can quickly learn. For someone to take deeper look into how OPENPILOT works, here's couple reads: https://blog.comma.ai/openpilot-in-2021/ https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
 
+In short OPENPILOT is LEVEL 2 ADAS software that runs on device that has one camera for recording the drive view. Another camera for driver monitoring. The device is connected or it has integrated device that can talk to CAN bus and has high precision GPS on it (eg. Panda). OPENPILOT inputs those camera feeds runs ML model through it, evaluate car state from sensors and CAN bus messages and output from those are longitudinal and lateral control commands.
+
 ## OPENPILOT HARDWARE
 To run OPENPILOT you need hardware that can run on it. COMMA AI produces their own device COMMA THREE https://github.com/commaai/openpilot/wiki/comma-three, older HW has been also made by COMMA eg. COMMA TWO https://github.com/commaai/openpilot/wiki/comma-two and EON. You can run OPENPILOT also on linux PC.
 
