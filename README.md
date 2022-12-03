@@ -91,7 +91,7 @@ Few mods have been done to this fork order to work with my car and my likenings.
 
 Default branch is based on openpilot version 0.8.2. In December of 2022 there is already openpilot version 0.9, which is much more capable than this older one. However, my hardware is no longer supported by the newer version of the software.
 
-my car does not currently have steering capabilities. However, the system I am using offers vision-based ACC with stop and go functionality, which greatly improves my driving experience. In fact, if for some reason OPENPILOT is not working, it bums me.
+To be clear my car does not currently have steering capabilities. However, the system I am using offers vision-based ACC with stop and go functionality, which greatly improves my driving experience. In fact, if for some reason OPENPILOT is not working, it bums me.
 
 ### Below is notes from Shane Smiskol whos Stock Additions fork is integrated in my fork, which has great additions to stock OPENPILOT
 
