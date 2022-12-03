@@ -26,6 +26,7 @@ Heres a quite good video that shows what is needed for maiking OPENPILOT work on
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/L1u6AkSpR98" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## Configuration
 So devices that are interfacing with my car are:
