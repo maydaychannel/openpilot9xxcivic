@@ -21,6 +21,7 @@ FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case an
 # Panda
 Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device. It is CAN interfacing devices that has high precision GPS and it'll power the COMMA/FrEON (https://github.com/commaai/panda). There have been 4 different kind of Pandas, White, Grey, Black and the newest is Red. Here's a white panda (old) hardware guide: https://github.com/commaai/panda/blob/master/docs/guide.pdf.
 
+Video showing Grey and Black Panda:
 [![Video showing Grey and Black Panda](https://i3.ytimg.com/vi/0iKRq7-kywI/maxresdefault.jpg)](https://www.youtube.com/watch?v=0iKRq7-kywI)
 
 # Additional Hardware
