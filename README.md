@@ -10,8 +10,10 @@ Video introducing OPENPILOT.
 
 OPENPILOT is a complex robotics platform that can be difficult to explain or quickly learn about. For those interested in taking a deeper look at how OPENPILOT works, the following resources may be helpful: https://blog.comma.ai/openpilot-in-2021/ and https://github.com/commaai/openpilot/wiki/Introduction-to-openpilot.
 
-![image](https://user-images.githubusercontent.com/37126045/205421854-f82e06a8-3a45-4520-824f-f490790784c5.png)
-
+<p align="center">
+  ![image](https://user-images.githubusercontent.com/37126045/205421854-f82e06a8-3a45-4520-824f-f490790784c5.png)
+</p>
+ 
 In short, OPENPILOT is a LEVEL 2 ADAS (Advanced Driver Assistance System) software that runs on a device with two cameras: one for recording the view of the road and another for driver monitoring. The device must also be connected to or have an integrated device that can communicate with the CAN bus and has high-precision GPS (e.g. Panda). OPENPILOT takes in the camera feeds, runs them through an ML model, evaluates the car's state using sensor and CAN bus data, and outputs longitudinal and lateral control commands based on that information. This allows the system to make intelligent, real-time decisions about how to control the car.
 
 ## OPENPILOT hardware
