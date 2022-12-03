@@ -35,7 +35,7 @@ On cars that have ADAS, the working principle of Pandas is slightly different, a
 ### Additional hardware
 For OPENPILOT to work correctly, it needs to have both lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS capabilities, this is achieved by intercepting the CAN bus messages, but in older cars, additional hardware is usually required to add this control. In my case, this is done by intercepting the gas pedal sensor signals with a COMMA PEDAL type of hardware for the gas (https://github.com/commaai/openpilot/wiki/comma-pedal), and using my own designed BrakeModule for the brake (https://github.com/killinen/BrakeModule). I currently do not have lateral control.
 
-The following video provides a good overview of what is needed to make OPENPILOT work on an older car. The solution shown in the video is slightly different from mine, and does not include braking capabilities, but it still illustrates the basic idea behind the system:
+The following video provides a good overview of the requirements for making OPENPILOT work on an older car. The gas solution shown in the video is for mechanical throttle bodies, interceptors can also be used with electronic throttle bodies, like in my case. Additionally, the video does not show the implementation of braking capabilities, but it still provides a good illustration of the basic idea behind the system:
 
 [![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
  
