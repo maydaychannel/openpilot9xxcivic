@@ -19,12 +19,12 @@ Video of COMMA TWO:
 
 [![](https://i3.ytimg.com/vi/fToVz1XB0x0/maxresdefault.jpg)](https://www.youtube.com/watch?v=fToVz1XB0x0)
 
-# FrEON
+### FrEON
 FrEON is the name of a phone that is capable of running OPENPILOT, and is encased in a 3D-printed case with some type of DIY cooling system. Only two phone models can currently run the older version of the OPENPILOT software: the OnePlus 3T and the LeEco Le Pro 3 (great name don't you think).
 
 [![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
-# Panda
+### Panda
 Panda is a crucial part of the OPENPILOT ecosystem, along with the COMMA/FrEON device. It is a CAN interfacing device that has high-precision GPS and is used to power the COMMA/FrEON (https://github.com/commaai/panda). There have been four different types of Pandas, including White, Grey, Black, and the newest version, Red. The following is a hardware guide for the White Panda (an older version): https://github.com/commaai/panda/blob/master/docs/guide.pdf.
 
 Video showing Grey and Black Panda:
@@ -32,7 +32,7 @@ Video showing Grey and Black Panda:
 
 On cars that have ADAS, the working principle of Pandas is slightly different, as they need to intercept CAN bus messages. In my simpler use case, Panda simply communicates with a single CAN bus and requires connections to 12V, GND, and IGN lines to function properly. I won't go into more detail about the differences in the working principle of Pandas in this context.
 
-# Additional hardware
+### Additional hardware
 For OPENPILOT to work correctly, it needs to have both lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS capabilities, this is achieved by intercepting the CAN bus messages, but in older cars, additional hardware is usually required to add this control. In my case, this is done by intercepting the gas pedal sensor signals with a COMMA PEDAL type of hardware for the gas (https://github.com/commaai/openpilot/wiki/comma-pedal), and using my own designed BrakeModule for the brake (https://github.com/killinen/BrakeModule). I currently do not have lateral control.
 
 The following video provides a good overview of what is needed to make OPENPILOT work on an older car. The solution shown in the video is slightly different from mine, and does not include braking capabilities, but it still illustrates the basic idea behind the system:
