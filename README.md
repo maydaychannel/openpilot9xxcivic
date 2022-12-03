@@ -20,7 +20,7 @@ Video of COMMA TWO:
 [![](https://i3.ytimg.com/vi/fToVz1XB0x0/maxresdefault.jpg)](https://www.youtube.com/watch?v=fToVz1XB0x0)
 
 ### FrEON
-FrEON is the name of a phone that is capable of running OPENPILOT, and is encased in a 3D-printed case with some type of DIY cooling system. Only two phone models can currently run the older version of the OPENPILOT software: the OnePlus 3T and the LeEco Le Pro 3 (great name don't you think).
+FrEON is the name of a phone that is capable of running OPENPILOT, and is encased in a 3D-printed case with some type of DIY cooling system. Only two phone models can currently run the older version of the OPENPILOT software: the OnePlus 3T and the LeEco Le Pro 3 (what a great name don't you think).
 
 [![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
@@ -45,7 +45,7 @@ So devices that are interfacing with my car are:
 - Gas interceptor
 - BrakeModule
 
-These all talk to each other vai BMW's original CAN bus:
+These all talk to each other via BMW's original CAN bus:
 
 ![Bus Topology I -K-M-P-Can-Diagnostic](https://user-images.githubusercontent.com/37126045/205412230-d4519533-0346-42c4-b3b5-591e453f1f85.jpg)
 
