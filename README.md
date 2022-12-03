@@ -12,13 +12,13 @@ OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor
 
 In short OPENPILOT is LEVEL 2 ADAS software that runs on device that has one camera for recording the drive view. Another camera for driver monitoring. The device is connected or it has integrated device that can talk to CAN bus and has high precision GPS on it (eg. Panda). OPENPILOT inputs those camera feeds runs ML model through it, evaluate car state from sensors and CAN bus messages and output from those are longitudinal and lateral control commands.
 
-## OPENPILOT HARDWARE
+## OPENPILOT hardware
 To run OPENPILOT you need hardware that can run on it. COMMA AI produces their own device COMMA THREE https://github.com/commaai/openpilot/wiki/comma-three, older HW has been also made by COMMA eg. COMMA TWO https://github.com/commaai/openpilot/wiki/comma-two and EON. You can run OPENPILOT also on linux PC.
 
-# FrEon
-FrEon is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
+# FrEON
+FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
 
-[![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
+[![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdeault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
 # Panda
 Panda is device that is essential to OPENPILOT ecosystem with COMMA/FrEON device. It is CAN interfacing devices that has high precision GPS and it'll power the COMMA/FrEON (https://github.com/commaai/panda). There have been 4 different kind of Pandas, White, Grey, Black and the newest is Red. Here's a white panda (old) hardware guide: https://github.com/commaai/panda/blob/master/docs/guide.pdf.
@@ -28,10 +28,10 @@ Video showing Grey and Black Panda:
 
 On cars that have ADAS Pandas working principle is little diffrent where it has to intercept CAN bus messages than in my use case (I won't go any deeper here into it). In my much simpler use is just that it talk to one CAN bus and it needs to be connected to 12V, GND and IGN lines to function properly.
 
-# Additional Hardware
+# Additional hardware
 To OPENPILOT work correctly it needs to have lateral (steering) and longitudinal (gas and brake) control of the car. In newer cars with ADAS cababitlity this is achived by intercepting the CAN bus messages, but in older cars you usually needs to add the controlling hardware. In my case this is done for gas intercepting the gas pedal sensor signals with COMMA PEDAL (https://github.com/commaai/openpilot/wiki/comma-pedal) type of hardware and brake using my own designed BrakeModule (https://github.com/killinen/BrakeModule). I don't yet have lateral control).
 
-Heres a quite good video that shows what is needed for maiking OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
+Heres a quite good video that shows what is needed for making OPENPILOT work on older car. This is even older than mine, the solution are different and there is no braking capabitlity but still this show the basic idea:
 
 [![](https://i3.ytimg.com/vi/L1u6AkSpR98/maxresdefault.jpg)](https://www.youtube.com/watch?app=desktop&v=L1u6AkSpR98&t=2s)
  
@@ -54,7 +54,7 @@ On the same CAN bus are as shown in the picture are:
 
 Communication between Panda and FrEON takes place via USB.
 
-## My forks SW mods in default branch:
+## My forks software mods in default branch:
 Few mods have been done to this fork order to work with my car and my likenings. On high level:
 - Add E39 CAN msgs configuration to opendbc
 - Detect BMW as OLD_CAR which is detected as TOYOTA COROLLA (fingerprinting)
