@@ -58,6 +58,23 @@ On the same CAN bus are as shown in the picture are:
 
 Communication between Panda and FrEON takes place via USB.
 
+OPENPILOT listen following states from CAN bus:
+- Wheel speeds (car speed)
+- Gas pedal state
+- Brake pedal state (disengage OP)
+- Blinkers state (lane change detection)
+- Doors states (warning)
+- Seatbelts states (warning)
+- DSC state (disengage OP if not on)
+- Steering Wheel Angle sensor (needed for determine car state)
+- Gear selector state (OP won't engage on P)
+- Cruise state (engage/disengage OP)
+
+OPENPILOT sends to CAN bus:
+- Gas pedal request message
+- Brake demand message
+- Cruise control cancel request message
+
 ## My forks software mods in default branch:
 Few mods have been done to this fork order to work with my car and my likenings. On high level:
 - Add E39 CAN msgs configuration to opendbc
