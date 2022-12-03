@@ -64,8 +64,8 @@ OPENPILOT listen following states from CAN bus:
 - Gas pedal state
 - Brake pedal state (disengage OP)
 - Blinkers state (lane change detection)
-- Doors states (warning)
-- Seatbelts states (warning)
+- Door states (warning)
+- Seatbelt states (warning)
 - DSC state (disengage OP if not on)
 - Steering Wheel Angle sensor (needed for determine car state)
 - Gear selector state (OP won't engage on P)
