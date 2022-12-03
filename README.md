@@ -13,8 +13,8 @@ OPENPILOT is quite complex robotics platform which isn't easyly explainable, nor
 ## OPENPILOT HARDWARE
 To run OPENPILOT you need hardware that can run on it. COMMA AI produces their own device COMMA THREE https://github.com/commaai/openpilot/wiki/comma-three, older HW has been also made by COMMA eg. COMMA TWO https://github.com/commaai/openpilot/wiki/comma-two and EON. You can run OPENPILOT also on linux PC.
 
-# FrEON
-FrEON is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
+# FrEon
+FrEon is name for a phone that can run OPENPILOT, which is in 3D-printed case and have somekind of querrilla tactics cooling on it. Basically there are two phones that can run (older) OPENPILOT software, OnePlus 3T and LeEco Le Pro 3 (great name don't you think).
 
 [![](https://i3.ytimg.com/vi/RC8wjAatwl0/maxresdefault.jpg)](https://www.youtube.com/watch?v=RC8wjAatwl0)
 
