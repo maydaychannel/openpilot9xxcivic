@@ -142,7 +142,7 @@ class CarInterface(CarInterfaceBase):
       ret.steerControlType = car.CarParams.SteerControlType.angle
       ret.wheelbase = 2.830   # This is updated for BMW
       ret.steerRatio = 17.9   # This is updated for BMW
-      tire_stiffness_factor = 0.444
+      tire_stiffness_factor = 0.8   # hand-tune
       ret.mass = 2000   # This is updated for BMW
       ret.longitudinalTuning.kpBP = [0., 15., 22.]
       ret.longitudinalTuning.kiBP = [0., 15., 22.]
