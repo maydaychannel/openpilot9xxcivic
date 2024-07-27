@@ -21,9 +21,9 @@ class CarState(CarStateBase):
   def update(self, cp, cp_cam, cp_body):
     ret = car.CarState.new_message()
     ret.standstill = ret.vEgoRaw == 0
-    ret.steerFaultPermanent = None
+    ret.steerFaultPermanent = False
     # NO_TORQUE_ALERT_2 can be caused by bump or steering nudge from driver
-    ret.steerFaultTemporary = None
+    ret.steerFaultTemporary = False
     ret.wheelSpeeds = self.get_wheel_speeds(
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FL"],
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FR"],
