@@ -86,6 +86,8 @@ whitelist = [
   "opendbc/ford_fusion_2018_adas.dbc",
   "opendbc/ford_lincoln_base_pt.dbc",
   "opendbc/honda_accord_2018_can_generated.dbc",
+  "opendbc/07civic.dbc",
+  "opendbc/ocelot_controls.dbc",
   "opendbc/acura_ilx_2016_can_generated.dbc",
   "opendbc/acura_rdx_2018_can_generated.dbc",
   "opendbc/acura_rdx_2020_can_generated.dbc",
