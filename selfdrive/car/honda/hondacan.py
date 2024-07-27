@@ -32,15 +32,6 @@ class CanBus(CanBusBase):
     return self.offset + 2
 
 
-def get_lkas_cmd_bus(CAN, car_fingerprint, radar_disabled=False):
-  no_radar = car_fingerprint in HONDA_BOSCH_RADARLESS
-  if radar_disabled or no_radar:
-    # when radar is disabled, steering commands are sent directly to powertrain bus
-    return CAN.pt
-  # normally steering commands are sent to radar, which forwards them to powertrain bus
-  return 0
-
-
 def get_cruise_speed_conversion(car_fingerprint: str, is_metric: bool) -> float:
   # on certain cars, CRUISE_SPEED changes to imperial with car's unit setting
   return CV.MPH_TO_MS if car_fingerprint in HONDA_BOSCH_RADARLESS and not is_metric else CV.KPH_TO_MS
