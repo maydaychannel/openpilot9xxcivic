@@ -4,7 +4,7 @@ from enum import Enum, IntFlag
 from cereal import car
 from openpilot.common.conversions import Conversions as CV
 from panda.python import uds
-from openpilot.selfdrive.car import dbc_dict, CarSpecs, PlatformConfig, Platforms, dbc_dict
+from openpilot.selfdrive.car import dbc_dict, CarSpecs, PlatformConfig, Platforms, DbcDict
 from openpilot.selfdrive.car.docs_definitions import CarFootnote, CarHarness, CarDocs, CarParts, Column
 from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, Request, StdQueries, p16
 
