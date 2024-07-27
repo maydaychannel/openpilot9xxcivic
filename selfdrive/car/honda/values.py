@@ -41,10 +41,7 @@ class HondaPlatformConfig(PlatformConfig):
 class CAR(Platforms):
   config: HondaPlatformConfig
   CIVIC_07 = HondaPlatformConfig(
-    [
-      HondaCarDocs("Honda Civic", "All", min_steer_speed=3. * CV.MPH_TO_MS),
-    ],
-    # steerRatio: 11.82 is spec end-to-end
+    [HondaCarDocs("Honda Civic", "All", min_steer_speed=3. * CV.MPH_TO_MS)],
     CarSpecs(mass=1379 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=15.38, centerToFrontRatio=0.4, tireStiffnessFactor=0.8467),
     dbc_dict('07civic', 'ocelot_controls'),
   )
