@@ -25,6 +25,7 @@ class CarState(CarStateBase):
     ret.steerFaultPermanent = False
     # NO_TORQUE_ALERT_2 can be caused by bump or steering nudge from driver
     ret.steerFaultTemporary = False
+    self.is_metric = not cp.vl["CAR_SPEED"]["IMPERIAL_UNIT"]
     ret.wheelSpeeds = self.get_wheel_speeds(
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FL"],
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FR"],
