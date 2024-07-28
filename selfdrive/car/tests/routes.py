@@ -2,17 +2,6 @@
 from typing import NamedTuple
 from openpilot.selfdrive.car.honda.values import CAR as HONDA
 
-# TODO: add routes for these cars
-non_tested_cars = [
-  FORD.FORD_F_150_MK14,
-  GM.CADILLAC_ATS,
-  GM.HOLDEN_ASTRA,
-  GM.CHEVROLET_MALIBU,
-  HYUNDAI.GENESIS_G90,
-  VOLKSWAGEN.VOLKSWAGEN_CRAFTER_MK2,  # need a route from an ACC-equipped Crafter
-  SUBARU.SUBARU_FORESTER_HYBRID,
-]
-
 
 class CarTestRoute(NamedTuple):
   route: str
