@@ -56,5 +56,5 @@ class CarState(CarStateBase):
            ("STEERING_TORQUE", "STEERING_STATUS", 0),
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, 1)
+    return CANParser('ocelot_controls', messages, 1)
 
