@@ -43,17 +43,18 @@ class CarState(CarStateBase):
     messages = [
       ("ENGINE_DATA", 100),
       ("WHEEL_SPEEDS", 50),
-      ("STEERING_TORQUE", "STEERING_STATUS", 0),
       ("POWERTRAIN_DATA", 100),
       ("CAR_SPEED", 10),
       ("VSA_STATUS", 50),
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CanBus(CP).pt)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
 
   @staticmethod
   def get_cam_can_parser(CP):
-    messages = []
+    messages = [
+           ("STEERING_TORQUE", "STEERING_STATUS", 0),
+    ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CanBus(CP).camera)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, 1)
 
