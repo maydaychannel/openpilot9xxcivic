@@ -52,7 +52,7 @@ class CAR(Platforms):
     ],
     # steerRatio: 11.82 is spec end-to-end
     CarSpecs(mass=1379 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=15.38, centerToFrontRatio=0.4, tireStiffnessFactor=0.8467),
-    dbc_dict('07civic', 'ocelot_controls'),
+    dbc_dict(None, None),
   )
 
 FW_QUERY_CONFIG = FwQueryConfig(
