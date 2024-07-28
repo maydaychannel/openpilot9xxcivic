@@ -45,7 +45,7 @@ class CarController(CarControllerBase):
     self.CP = CP
     self.packer = CANPacker(dbc_name)
     self.params = CarControllerParams(CP)
-    self.CAN = hondacan.CanBus(CP)
+    # self.CAN = hondacan.CanBus(CP)
     self.frame = 0
 
     self.braking = False
@@ -68,26 +68,8 @@ class CarController(CarControllerBase):
     hud_v_cruise = hud_control.setSpeed / conversion if hud_control.speedVisible else 255
     pcm_cancel_cmd = CC.cruiseControl.cancel
 
-    if CC.longActive:
-      accel = actuators.accel
-      gas, brake = compute_gas_brake(actuators.accel, CS.out.vEgo, self.CP.carFingerprint)
-    else:
-      accel = 0.0
-      gas, brake = 0.0, 0.0
-
-    # *** rate limit steer ***
-    limited_steer = rate_limit_steer(actuators.steer, self.last_steer)
-    self.last_steer = limited_steer
-
-    # steer torque is converted back to CAN reference (positive when steering right)
-    apply_steer = int(interp(-limited_steer * self.params.STEER_MAX,
-                             self.params.STEER_LOOKUP_BP, self.params.STEER_LOOKUP_V))
-
     # Send CAN commands
     can_sends = []
-    # Send steering command.
-    can_sends.append(hondacan.create_steering_control(self.packer, self.CAN, apply_steer, CC.latActive, self.CP.carFingerprint,
-                                                      CS.CP.openpilotLongitudinalControl))
     can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
 
     new_actuators = actuators.as_builder()
