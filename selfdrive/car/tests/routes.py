@@ -71,8 +71,7 @@ routes = [
   CarTestRoute("38aa7da107d5d252|2022-08-15--16-01-12", GM.CHEVROLET_SILVERADO),
   CarTestRoute("5085c761395d1fe6|2023-04-07--18-20-06", GM.CHEVROLET_TRAILBLAZER),
 
-  CarTestRoute("0e7a2ba168465df5|2020-10-18--14-14-22", HONDA.ACURA_RDX_3G),
-  CarTestRoute("a74b011b32b51b56|2020-07-26--17-09-36", HONDA.HONDA_CIVIC),
+  CarTestRoute("a74b011b32b51b56|2020-07-26--17-09-36", HONDA.CIVIC_07),
 
   # Segments that test specific issues
   # Controls mismatch due to standstill threshold
