@@ -17,7 +17,7 @@ BASE_URL = "https://commadataci.blob.core.windows.net/openpilotci/"
 
 CARS = {
   'toyota': ("0982d79ebb0de295|2021-01-03--20-03-36/6", TOYOTA.TOYOTA_RAV4),
-  'honda': ("0982d79ebb0de295|2021-01-08--10-13-10/6", HONDA.HONDA_CIVIC),
+  'honda': ("0982d79ebb0de295|2021-01-08--10-13-10/6", HONDA.CIVIC_07),
   "vw": ("ef895f46af5fd73f|2021-05-22--14-06-35/6", VW.AUDI_A3_MK3),
 }
 
