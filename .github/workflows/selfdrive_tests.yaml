@@ -95,31 +95,6 @@ jobs:
     - uses: ./.github/workflows/compile-openpilot
       timeout-minutes: ${{ ((steps.restore-scons-cache.outputs.cache-hit == 'true') && 15 || 30) }} # allow more time when we missed the scons cache
 
-  build_mac:
-    name: build macOS
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - run: git lfs pull
-    - name: Install dependencies
-      run: ./tools/mac_setup.sh
-      env:
-        # package install has DeprecationWarnings
-        PYTHONWARNINGS: default
-    - run: echo "CACHE_COMMIT_DATE=$(git log -1 --pretty='format:%cd' --date=format:'%Y-%m-%d-%H:%M')" >> $GITHUB_ENV
-    - name: Getting scons cache
-      uses: 'actions/cache@v4'
-      with:
-        path: /tmp/scons_cache
-        key: scons-${{ runner.arch }}-macos-${{ env.CACHE_COMMIT_DATE }}-${{ github.sha }}
-        restore-keys: |
-          scons-${{ runner.arch }}-macos-${{ env.CACHE_COMMIT_DATE }}
-          scons-${{ runner.arch }}-macos
-    - name: Building openpilot
-      run: . .venv/bin/activate && scons -j$(nproc)
-
   docker_push_multiarch:
     name: docker push multiarch tag
     runs-on: ubuntu-latest
