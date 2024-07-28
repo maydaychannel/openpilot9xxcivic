@@ -22,9 +22,8 @@ class CarState(CarStateBase):
     ret = car.CarState.new_message()
     ret.standstill = ret.vEgoRaw == 0
     ret.steerFaultPermanent = False
-    # NO_TORQUE_ALERT_2 can be caused by bump or steering nudge from driver
     ret.steerFaultTemporary = False
-    ret.steeringTorqueEps = cp.vl["STEERING_STATUS"]['STEERING_TORQUE']
+    # ret.steeringTorqueEps = cp.vl["STEERING_STATUS"]['STEERING_TORQUE']
     self.is_metric = not cp.vl["CAR_SPEED"]["IMPERIAL_UNIT"]
     ret.wheelSpeeds = self.get_wheel_speeds(
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FL"],
@@ -50,11 +49,9 @@ class CarState(CarStateBase):
 
     return CANParser('07civic', messages, 0)
 
-  @staticmethod
-  def get_cam_can_parser(CP):
-    messages = [
-           ("STEERING_TORQUE", "STEERING_STATUS", 0),
-    ]
-
-    return CANParser('ocelot_controls', messages, 1)
+  #@staticmethod
+  #def get_cam_can_parser(CP):
+  #  messages = [
+   #        ("STEERING_TORQUE", "STEERING_STATUS", 0),]
+  #  return CANParser('ocelot_controls', messages, 1)
 
