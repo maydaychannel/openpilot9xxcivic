@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from typing import NamedTuple
 from openpilot.selfdrive.car.honda.values import CAR as HONDA
-
+from openpilot.selfdrive.car.values import Platform
 
 class CarTestRoute(NamedTuple):
   route: str
