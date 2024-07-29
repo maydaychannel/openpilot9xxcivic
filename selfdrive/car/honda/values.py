@@ -13,22 +13,17 @@ VisualAlert = car.CarControl.HUDControl.VisualAlert
 
 
 class CarControllerParams:
-  # Allow small margin below -3.5 m/s^2 from ISO 15622:2018 since we
-  # perform the closed loop control, and might need some
-  # to apply some more braking if we're on a downhill slope.
-  # Our controller should still keep the 2 second average above
-  # -3.5 m/s^2 as per planner limits
-  NIDEC_ACCEL_MIN = -4.0  # m/s^2
-  NIDEC_ACCEL_MAX = 1.6  # m/s^2, lower than 2.0 m/s^2 for tuning reasons
+  STEER_STEP = 1
+  HUD_1_STEP = 50
+  HUD_2_STEP = 25
 
-  NIDEC_ACCEL_LOOKUP_BP = [-1., 0., .6]
-  NIDEC_ACCEL_LOOKUP_V = [-4.8, 0., 2.0]
+  STEER_MAX = 300
+  STEER_DRIVER_ALLOWANCE = 80
+  STEER_DRIVER_MULTIPLIER = 3  # weight driver torque heavily
+  STEER_DRIVER_FACTOR = 1  # from dbc
+  STEER_DELTA_UP = 4
+  STEER_DELTA_DOWN = 4
 
-  NIDEC_MAX_ACCEL_V = [0.5, 2.4, 1.4, 0.6]
-  NIDEC_MAX_ACCEL_BP = [0.0, 4.0, 10., 20.]
-
-  NIDEC_GAS_MAX = 198  # 0xc6
-  NIDEC_BRAKE_MAX = 1024 // 4
   def __init__(self, CP):
     pass
 
