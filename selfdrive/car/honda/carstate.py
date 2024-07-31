@@ -23,7 +23,7 @@ class CarState(CarStateBase):
     ret.standstill = ret.vEgoRaw == 0
     ret.steerFaultPermanent = False
     ret.steerFaultTemporary = False
-    # ret.steeringTorqueEps = cp.vl["STEERING_STATUS"]['STEERING_TORQUE']
+    ret.steeringTorqueEps = cp.vl["STEERING_STATUS"]['STEERING_TORQUE']
     self.is_metric = not cp.vl["CAR_SPEED"]["IMPERIAL_UNIT"]
     ret.wheelSpeeds = self.get_wheel_speeds(
       cp.vl["WHEEL_SPEEDS"]["WHEEL_SPEED_FL"],
@@ -43,6 +43,7 @@ class CarState(CarStateBase):
       ("ENGINE_DATA", 100),
       ("WHEEL_SPEEDS", 50),
       ("POWERTRAIN_DATA", 100),
+      ("STEERING_TORQUE", "STEERING_STATUS", 0),
       ("CAR_SPEED", 10),
       ("VSA_STATUS", 50),
     ]
