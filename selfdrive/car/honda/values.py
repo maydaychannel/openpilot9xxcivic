@@ -54,9 +54,9 @@ FW_QUERY_CONFIG = FwQueryConfig(
   requests=[
     # Currently used to fingerprint
     Request(
-      [StdQueries.UDS_VERSION_REQUEST],
-      [StdQueries.UDS_VERSION_RESPONSE],
-      bus=1,
+      [StdQueries.MANUFACTURER_SOFTWARE_VERSION_REQUEST],
+      [StdQueries.MANUFACTURER_SOFTWARE_VERSION_RESPONSE],
+      bus=0,
     ),
   ],
 )
