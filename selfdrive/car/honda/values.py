@@ -17,16 +17,22 @@ class CarControllerParams:
   HUD_1_STEP = 50
   HUD_2_STEP = 25
 
-  STEER_MAX = 300
-  STEER_DRIVER_ALLOWANCE = 80
-  STEER_DRIVER_MULTIPLIER = 3  # weight driver torque heavily
-  STEER_DRIVER_FACTOR = 1  # from dbc
-  STEER_DELTA_UP = 4
-  STEER_DELTA_DOWN = 4
-
+  #stepperservo stuff
+  STEER_MAX = 1500
+  STEER_DELTA_UP = 3       # 1.5s time to peak torque (original value 10)
+  STEER_DELTA_DOWN = 25     # always lower than 45 otherwise the Rav4 faults (Prius seems ok with 50)
+  STEER_ERROR_MAX = 350 
+#stepperservo params
+class SteerActuatorParams: # stepper parameters
+  STEER_BACKLASH = 1 #deg
   def __init__(self, CP):
     pass
-
+# Steer torque limits for StepperServo
+class SteerLimitParams: #controls running @ 100hz
+  MAX_STEERING_TQ = 12  # Nm
+  STEER_DELTA_UP = 10 / 100       # 10Nm/s
+  STEER_DELTA_DOWN = 1000 / 100     # 10Nm/sample - no limit
+  STEER_ERROR_MAX = 999     # max delta between torque cmd and torque motor
 
 @dataclass
 class HondaCarDocs(CarDocs):
