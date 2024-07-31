@@ -7,6 +7,26 @@ from openpilot.selfdrive.car.honda.values import CAR
 from openpilot.selfdrive.car import create_button_events, get_safety_config
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 
+# steer control i think
+
+def detect_stepper_override(steerCmd, steerAct, vEgo, centering_ceoff, SteerFrictionTq):
+  # when steering released (or lost steps), what angle will it return to
+  # if we are above that angle, we can detect things
+  releaseAngle = SteerFrictionTq / (max(vEgo, 1) ** 2 * centering_ceoff)
+
+  override = False
+  marginVal = 1
+  if abs(steerCmd) > releaseAngle:  # for higher angles we steering will not move outward by itself with stepper on
+    if steerCmd > 0:
+      override |= steerAct - steerCmd > marginVal  # driver overrode from right to more right
+      override |= steerAct < 0  # releaseAngle -3  # driver overrode from right to opposite direction
+    else:
+      override |= steerAct - steerCmd < -marginVal  # driver overrode from left to more left
+      override |= steerAct > 0  # -releaseAngle +3 # driver overrode from left to opposite direction
+  # else:
+    # override |= abs(steerAct) > releaseAngle + marginVal  # driver overrode to an angle where steering will not go by itself
+  return override
+
 class CarInterface(CarInterfaceBase):
   @staticmethod
   def _get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs):
