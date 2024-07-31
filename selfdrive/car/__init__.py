@@ -27,6 +27,25 @@ def apply_hysteresis(val: float, val_steady: float, hyst_gap: float) -> float:
   elif val < val_steady - hyst_gap:
     val_steady = val + hyst_gap
   return val_steady
+#toyota thing
+def apply_toyota_steer_torque_limits(apply_torque, apply_torque_last, motor_torque, LIMITS):
+  # limits due to comparison of commanded torque VS motor reported torque
+  max_lim = min(max(motor_torque + LIMITS.STEER_ERROR_MAX, LIMITS.STEER_ERROR_MAX), LIMITS.STEER_MAX)
+  min_lim = max(min(motor_torque - LIMITS.STEER_ERROR_MAX, -LIMITS.STEER_ERROR_MAX), -LIMITS.STEER_MAX)
+
+  apply_torque = clip(apply_torque, min_lim, max_lim)
+
+  # slow rate if steer torque increases in magnitude
+  if apply_torque_last > 0:
+    apply_torque = clip(apply_torque,
+                        max(apply_torque_last - LIMITS.STEER_DELTA_DOWN, -LIMITS.STEER_DELTA_UP),
+                        apply_torque_last + LIMITS.STEER_DELTA_UP)
+  else:
+    apply_torque = clip(apply_torque,
+                        apply_torque_last - LIMITS.STEER_DELTA_UP,
+                        min(apply_torque_last + LIMITS.STEER_DELTA_DOWN, LIMITS.STEER_DELTA_UP))
+
+  return int(round(float(apply_torque)))
 
 
 def create_button_events(cur_btn: int, prev_btn: int, buttons_dict: dict[int, capnp.lib.capnp._EnumModule],
