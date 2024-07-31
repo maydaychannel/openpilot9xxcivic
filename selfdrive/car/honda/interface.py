@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
 from cereal import car
-from panda import Panda
-from openpilot.common.conversions import Conversions as CV
-from openpilot.common.numpy_fast import interp
-from openpilot.selfdrive.car.honda.values import CAR
-from openpilot.selfdrive.car import create_button_events, get_safety_config
+from openpilot.selfdrive.car import get_safety_config
+from openpilot.selfdrive.car.honda.values import CAR, SteerLimitParams
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 
 # steer control i think
@@ -35,10 +31,18 @@ class CarInterface(CarInterfaceBase):
     ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 4096], [0, 4096]]  # TODO: determine if there is a dead zone at the top end
     ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.18]]
     ret.wheelSpeedFactor = 1.025
-
+    
+    ###added from killinen's stepperservo
+    ret.steerControlType = car.CarParams.SteerControlType.angle
     ret.steerActuatorDelay = 0.1
     ret.steerLimitTimer = 0.8
-
+    ret.lateralTuning.init('pid')
+    ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[5.5, 30.], [5.5, 30.]]
+    ret.lateralTuning.pid.kiV, ret.lateralTuning.pid.kpV = [[0.0, 0.0], [0.5, 3]]
+    ret.lateralTuning.pid.kf = 0.00003
+    ret.steerMaxBP = [0.]
+    ret.steerMaxV = [SteerLimitParams.MAX_STEERING_TQ]
+    ##end from killinen
     return ret
   def _update(self, c):
     ret = self.CS.update(self.cp, self.cp_cam, self.cp_body)
