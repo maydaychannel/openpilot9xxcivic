@@ -4,7 +4,7 @@ from cereal import car
 from openpilot.common.numpy_fast import clip, interp
 from openpilot.common.realtime import DT_CTRL
 from opendbc.can.packer import CANPacker
-from openpilot.selfdrive.car import apply_toyota_steer_torque_limits, create_gas_command, make_can_msg
+from openpilot.selfdrive.car import apply_toyota_steer_torque_limits
 from openpilot.selfdrive.car.honda.hondacan import create_steer_command, create_new_steer_command
 from openpilot.selfdrive.car.honda.values import Ecu, CarControllerParams, SteerLimitParams
 from openpilot.selfdrive.car.interfaces import CarControllerBase
