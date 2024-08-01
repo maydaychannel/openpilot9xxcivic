@@ -41,7 +41,7 @@ class CarInterface(CarInterfaceBase):
     ret.lateralTuning.pid.kiV, ret.lateralTuning.pid.kpV = [[0.0, 0.0], [0.5, 3]]
     ret.lateralTuning.pid.kf = 0.00003
     #ret.steerMaxBP = [0.]
-    ret.steerMaxV = [SteerLimitParams.MAX_STEERING_TQ]
+    #ret.steerMaxV = [SteerLimitParams.MAX_STEERING_TQ]
     ##end from killinen
     return ret
   def _update(self, c):
