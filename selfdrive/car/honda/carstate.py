@@ -15,8 +15,8 @@ TransmissionType = car.CarParams.TransmissionType
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
-    self.frame = 0
-    self.CCP = CarControllerParams(CP)
+    #self.frame = 0
+    #self.CCP = CarControllerParams(CP)
 
   def update(self, cp, cp_cam, cp_body):
     ret = car.CarState.new_message()
