@@ -38,7 +38,7 @@ class CarState(CarStateBase):
 
     return ret
 
-  def get_can_parser(self, CP):
+  def get_can_parser(CP):
     messages = [
       ("ENGINE_DATA", 100),
       ("WHEEL_SPEEDS", 50),
