@@ -53,8 +53,7 @@ class CarController(CarControllerBase):
     #stepperservo
     new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
-    if enabled == True:
-      apply_steer_req = 0
+    apply_steer_req = 0
     # steer angle
     angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
     target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
