@@ -46,10 +46,8 @@ class CarController(CarControllerBase):
     self.fake_ecus.add(Ecu.fwdCamera)
 
   def update(self, enabled, CC, CS, now_nanos):
-    actuators = CC.actuators
     # Send CAN commands
     can_sends = []
-    new_actuators = actuators.as_builder()
     #stepperservo
     new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
