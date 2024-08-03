@@ -7,7 +7,6 @@ from openpilot.common.numpy_fast import interp
 from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car.honda.values import CAR, DBC, CarControllerParams
-from openpilot.selfdrive.car.honda.hondacan import CanBus
 from openpilot.selfdrive.car.interfaces import CarStateBase
 
 TransmissionType = car.CarParams.TransmissionType
@@ -49,7 +48,7 @@ class CarState(CarStateBase):
       ("VSA_STATUS", 50),
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
+    return CANParser('07civic', messages, 0)
 
   #@staticmethod
   #def get_cam_can_parser(CP):
