@@ -50,8 +50,6 @@ class CarController(CarControllerBase):
     # Send CAN commands
     can_sends = []
     new_actuators = actuators.as_builder()
-    new_actuators.steer = self.apply_steer_last / self.CCP.STEER_MAX
-    new_actuators.steerOutputCan = self.apply_steer_last
     #stepperservo
     new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
