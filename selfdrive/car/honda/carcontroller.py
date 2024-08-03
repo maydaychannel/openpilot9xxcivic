@@ -49,7 +49,6 @@ class CarController(CarControllerBase):
     actuators = CC.actuators
     # Send CAN commands
     can_sends = []
-    self.apply_steer_last = apply_steer
     new_actuators = actuators.as_builder()
     new_actuators.steer = self.apply_steer_last / self.CCP.STEER_MAX
     new_actuators.steerOutputCan = self.apply_steer_last
