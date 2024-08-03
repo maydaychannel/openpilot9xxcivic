@@ -45,7 +45,7 @@ class CarController(CarControllerBase):
     self.fake_ecus = set()
     self.fake_ecus.add(Ecu.fwdCamera)
 
-  def update(self, CC, CS, now_nanos):
+  def update(self, enabled, CC, CS, now_nanos):
     actuators = CC.actuators
     # Send CAN commands
     can_sends = []
