@@ -50,6 +50,9 @@ class CarController(CarControllerBase):
     actuators = CC.actuators
     can_sends = []
     if self.frame % self.CCP.STEER_STEP == 0:
+      angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
+      target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
+
       if CC.latActive:
         #stepperservo
         new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
@@ -63,8 +66,6 @@ class CarController(CarControllerBase):
       self.apply_steer_last = apply_steer
       can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
     # steer angle
-    angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
-    target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
 
 
       
