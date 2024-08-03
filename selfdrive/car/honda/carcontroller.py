@@ -43,8 +43,7 @@ class CarController(CarControllerBase):
     self.target_angle_delta = 0
     self.steer_tq_r = 0
     self.fake_ecus = set()
-    if CP.enableCamera:
-      self.fake_ecus.add(Ecu.fwdCamera)
+    self.fake_ecus.add(Ecu.fwdCamera)
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
