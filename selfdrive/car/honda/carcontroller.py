@@ -26,11 +26,11 @@ ANGLE_RATE_UNWIND = [500., 350., 40.]  #deg/s unwind rate limit
     
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
-   # self.CP = CP
-   # self.CCP = CarControllerParams(CP)
-    self.packer = CANPacker(dbc_name)
+    self.CP = CP
+    self.CCP = CarControllerParams(CP)
+    self.packer_pt = CANPacker(dbc_name)
     self.last_steer = 0
-   # self.frame = 0
+    self.frame = 0
     # StepperServo variables, redundant safety check with the board
     self.last_steer_tq = 0
     self.last_controls_enabled = False
@@ -47,14 +47,17 @@ class CarController(CarControllerBase):
 
   def update(self, CC, CS, now_nanos):
     # Send CAN commands
-    can_sends = []
-    frame = 0
-    enabled = False
     actuators = CC.actuators
-    #stepperservo
-    new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
-    apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
-    apply_steer_req = 0
+    can_sends = []
+    if self.frame % self.CCP.STEER_STEP == 0:
+      if CC.latActive:
+        #stepperservo
+        new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
+        apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
+      else:
+        apply_steer = 0
+      self.apply_steer_last = apply_steer
+      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
     # steer angle
     angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
     target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
@@ -100,7 +103,12 @@ class CarController(CarControllerBase):
       self.last_steer_tq = steer_tq
       self.last_target_angle_lim = target_angle_lim
       self.last_controls_enabled = enabled
-    if Ecu.fwdCamera in self.fake_ecus:
+    if Ecu.fwdCamera in self.fake_ecus: 136
+
+Not from the GitHub web interface itself, as mentioned in "How can I search for a commit message on GitHub?": only the default branch (generally master) is indexed.
+
+Your best bet is to clone the repository, and there, search in all branches (with git log -S for instance).
+
       # Original steer_command
       can_sends.append(create_steer_command(self.packer, apply_steer, apply_steer_req, frame))
       # # StepperServoCan steer_command
