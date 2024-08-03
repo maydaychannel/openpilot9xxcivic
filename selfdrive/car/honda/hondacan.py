@@ -1,3 +1,14 @@
+from openpilot.selfdrive.car import CanBusBase
+
+class CanBus(CanBusBase):
+  def __init__(self, CP=None, fingerprint=None) -> None:
+    # use fingerprint if specified
+    super().__init__(CP if fingerprint is None else None, fingerprint)
+  @property
+  def pt(self) -> int:
+    return self._pt
+
+
 def create_steer_command(packer, steer, steer_req, raw_cnt):
   """Creates a CAN message for the Toyota Steer Command."""
 # toyota, not important
