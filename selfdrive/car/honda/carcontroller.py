@@ -48,6 +48,7 @@ class CarController(CarControllerBase):
   def update(self, CC, CS, now_nanos):
     # Send CAN commands
     can_sends = []
+    frame = 0
     enabled = False
     actuators = CC.actuators
     #stepperservo
