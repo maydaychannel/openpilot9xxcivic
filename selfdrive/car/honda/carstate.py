@@ -18,7 +18,7 @@ class CarState(CarStateBase):
     #self.frame = 0
     #self.CCP = CarControllerParams(CP)
 
-  def update(self, cp, cp_cam, cp_body):
+  def update(self, cp, cp_cam):
     ret = car.CarState.new_message()
     ret.standstill = ret.vEgoRaw == 0
     ret.steerFaultPermanent = False
