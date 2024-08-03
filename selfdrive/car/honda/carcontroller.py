@@ -27,7 +27,6 @@ ANGLE_RATE_UNWIND = [500., 350., 40.]  #deg/s unwind rate limit
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
     self.CP = CP
-    self.CCP = CarControllerParams(CP)
     self.packer_pt = CANPacker(dbc_name)
     self.last_steer = 0
     self.frame = 0
@@ -49,7 +48,7 @@ class CarController(CarControllerBase):
     # Send CAN commands
     actuators = CC.actuators
     can_sends = []
-    if self.frame % self.CCP.STEER_STEP == 0:
+    if self.frame % self.CP.STEER_STEP == 0:
       angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
       target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
 
