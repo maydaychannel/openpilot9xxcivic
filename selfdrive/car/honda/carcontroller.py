@@ -49,6 +49,7 @@ class CarController(CarControllerBase):
     # Send CAN commands
     can_sends = []
     enabled = False
+    actuators = 1
     #stepperservo
     new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
