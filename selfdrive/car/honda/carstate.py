@@ -48,7 +48,7 @@ class CarState(CarStateBase):
       ("VSA_STATUS", 50),
     ]
 
-    return CANParser('07civic', messages, 0)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
 
   #@staticmethod
   #def get_cam_can_parser(CP):
