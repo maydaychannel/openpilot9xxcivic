@@ -44,7 +44,7 @@ class CarState(CarStateBase):
       ("ENGINE_DATA", 100),
       ("WHEEL_SPEEDS", 50),
       ("POWERTRAIN_DATA", 100),
-      ("STEERING_STATUS", "STEERING_TORQUE", 0),
+      ("STEERING_STATUS", "STEERING_TORQUE", 100),
       ("CAR_SPEED", 10),
       ("VSA_STATUS", 50),
     ]
