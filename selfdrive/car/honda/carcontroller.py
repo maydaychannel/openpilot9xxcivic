@@ -56,17 +56,17 @@ class CarController(CarControllerBase):
         apply_steer = apply_toyota_steer_torque_limits(new_steer, self.last_steer, 0, CarControllerParams)
       else:
         apply_steer = 0
+      if (self.last_target_angle_lim * target_angle_lim) > 0. and abs(target_angle_lim) > abs(self.last_target_angle_lim): #todo revise last_angle
+        angle_rate_max = interp(CS.out.vEgo, ANGLE_RATE_BP, ANGLE_RATE_WINDUP) 
+      else:
+        angle_rate_max = interp(CS.out.vEgo, ANGLE_RATE_BP, ANGLE_RATE_UNWIND)
       self.apply_steer_last = apply_steer
       can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
     # steer angle
     angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
     target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
-    if enabled:
-      # windup slower
-      if (self.last_target_angle_lim * target_angle_lim) > 0. and abs(target_angle_lim) > abs(self.last_target_angle_lim): #todo revise last_angle
-        angle_rate_max = interp(CS.out.vEgo, ANGLE_RATE_BP, ANGLE_RATE_WINDUP) 
-      else:
-        angle_rate_max = interp(CS.out.vEgo, ANGLE_RATE_BP, ANGLE_RATE_UNWIND)
+
+
       
       # steer angle - don't allow too large delta
       MAX_SEC_BEHIND = 1 #seconds behind target. Target deltas behind more than 1s will be rejected by bmw_safety #todo implement real (speed) rate limiter?? check with panda. Replace MAX_SEC_BEHIND with a Hz?
@@ -103,15 +103,14 @@ class CarController(CarControllerBase):
       self.last_steer_tq = steer_tq
       self.last_target_angle_lim = target_angle_lim
       self.last_controls_enabled = enabled
-    if Ecu.fwdCamera in self.fake_ecus: 136
-
-Not from the GitHub web interface itself, as mentioned in "How can I search for a commit message on GitHub?": only the default branch (generally master) is indexed.
-
-Your best bet is to clone the repository, and there, search in all branches (with git log -S for instance).
+    if Ecu.fwdCamera in self.fake_ecus:
 
       # Original steer_command
       can_sends.append(create_steer_command(self.packer, apply_steer, apply_steer_req, frame))
       # # StepperServoCan steer_command
       can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
-    
-    return can_sends
+    new_actuators = actuators.as_builder()
+    new_actuators.steer = self.apply_steer_last / self.CCP.STEER_MAX
+    new_actuators.steerOutputCan = self.apply_steer_last
+
+    return new_actuators, can_sends
