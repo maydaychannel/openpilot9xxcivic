@@ -37,7 +37,7 @@ class CarState(CarStateBase):
     ret.vEgoCluster = float(np.mean([ret.wheelSpeeds.fl, ret.wheelSpeeds.fr, ret.wheelSpeeds.rl, ret.wheelSpeeds.rr]))
 
     return ret
-
+  @staticmethod
   def get_can_parser(CP):
     messages = [
       ("ENGINE_DATA", 100),
