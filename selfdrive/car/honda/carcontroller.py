@@ -29,7 +29,7 @@ class CarController(CarControllerBase):
    # self.CP = CP
    # self.CCP = CarControllerParams(CP)
     self.packer = CANPacker(dbc_name)
-   # self.apply_steer_last = 0
+    self.steer_last = 0
    # self.frame = 0
     # StepperServo variables, redundant safety check with the board
     self.last_steer_tq = 0
