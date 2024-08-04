@@ -27,7 +27,7 @@ ANGLE_RATE_UNWIND = [500., 350., 40.]  #deg/s unwind rate limit
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
     self.CP = CP
-    self.packer_pt = CANPacker(dbc_name)
+    self.packer = CANPacker(dbc_name)
     self.last_steer = 0
     self.frame = 0
     # StepperServo variables, redundant safety check with the board
