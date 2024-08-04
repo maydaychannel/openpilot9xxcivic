@@ -46,6 +46,7 @@ class CarController(CarControllerBase):
 
   def update(self, CC, CS, now_nanos):
     # Send CAN commands
+    apply_steer_req = 0
     actuators = CC.actuators
     can_sends = []
     if self.frame % 2 == 0:
