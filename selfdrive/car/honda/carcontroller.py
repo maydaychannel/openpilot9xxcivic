@@ -48,7 +48,7 @@ class CarController(CarControllerBase):
     # Send CAN commands
     actuators = CC.actuators
     can_sends = []
-    if self.frame % self.CP.STEER_STEP == 0:
+    if self.frame % STEER_STEP == 0:
       angle_lim = interp(CS.out.vEgo, ANGLE_MAX_BP, ANGLE_MAX)
       target_angle_lim = clip(actuators.steeringAngleDeg, -angle_lim, angle_lim)
 
