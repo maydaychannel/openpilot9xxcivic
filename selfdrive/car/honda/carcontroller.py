@@ -64,7 +64,7 @@ class CarController(CarControllerBase):
       else:
         angle_rate_max = interp(CS.out.vEgo, ANGLE_RATE_BP, ANGLE_RATE_UNWIND)
       self.apply_steer_last = apply_steer
-      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
+      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, self.frame))
     # steer angle
 
 
@@ -100,16 +100,16 @@ class CarController(CarControllerBase):
       self.target_angle_delta = 0
       steer_tq = 0
       self.steer_tq_r = 0
-      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame)) 
+      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, self.frame)) 
       self.last_steer_tq = steer_tq
       self.last_target_angle_lim = target_angle_lim
       self.last_controls_enabled = enabled
     if Ecu.fwdCamera in self.fake_ecus:
 
       # Original steer_command
-      can_sends.append(create_steer_command(self.packer, apply_steer, apply_steer_req, frame))
+      can_sends.append(create_steer_command(self.packer, apply_steer, apply_steer_req, self.frame))
       # # StepperServoCan steer_command
-      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
+      can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, self.frame))
     new_actuators = actuators.as_builder()
     new_actuators.steer = self.last_steer
     new_actuators.steerOutputCan = apply_steer
