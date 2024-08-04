@@ -110,7 +110,7 @@ class CarController(CarControllerBase):
       # # StepperServoCan steer_command
       can_sends.append(create_new_steer_command(self.packer, apply_steer_req, self.target_angle_delta, self.steer_tq_r, frame))
     new_actuators = actuators.as_builder()
-    new_actuators.steer = self.apply_steer_last / self.CCP.STEER_MAX
-    new_actuators.steerOutputCan = self.apply_steer_last
+    new_actuators.steer = self.last_steer
+    new_actuators.steerOutputCan = apply_steer
 
     return new_actuators, can_sends
