@@ -43,7 +43,7 @@ class CarInterface(CarInterfaceBase):
     #ret.steerMaxBP = [0.]
     #ret.steerMaxV = [SteerLimitParams.MAX_STEERING_TQ]
     ##end from killinen
-    ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.honda)]
+    ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.hondaNidec)]
     return ret
   def _update(self, c):
     ret = self.CS.update(self.cp, self.cp_cam)
